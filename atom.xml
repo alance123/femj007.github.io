@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Share and Study</title>
+  <title>Study and Share</title>
   
   <subtitle>Jinguo&#39;s blog</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.dongjinguo.com/"/>
-  <updated>2018-09-29T14:59:11.427Z</updated>
+  <updated>2018-09-29T15:04:47.989Z</updated>
   <id>http://blog.dongjinguo.com/</id>
   
   <author>
-    <name>Jinguo Dong</name>
+    <name>Jinguo Dong (董金国)</name>
     
   </author>
   
@@ -21,14 +21,15 @@
     <link href="http://blog.dongjinguo.com/2018-09-30/errors/"/>
     <id>http://blog.dongjinguo.com/2018-09-30/errors/</id>
     <published>2018-09-29T16:54:06.000Z</published>
-    <updated>2018-09-29T14:59:11.427Z</updated>
+    <updated>2018-09-29T15:04:47.989Z</updated>
     
-    <content type="html"><![CDATA[<blockquote><p>记录建站中踩过的一些坑。<br>欢迎访问我的个人网站：dongjinguo.com<br><a id="more"></a></p></blockquote><h1 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h1><h2 id="Nginx-502-Bad-Gateway"><a href="#Nginx-502-Bad-Gateway" class="headerlink" title="Nginx 502 Bad Gateway"></a>Nginx 502 Bad Gateway</h2><p>这个问题找了好久才解决，从中文到英文都查、试了个遍，发现我这边是php-fpm版本不一问题。<br>首先检查/var/log/nginx中的错误日志，发现如下错误：<br>unix:/run/php/php7.0-fpm.sock failed (13: Permission denied) while connecting to upstream<br>检查发现服务器php版本是7.2，于是修改Nginx配置文件把7.0更改为7.2最终解决。</p><pre><code>vim /etc/nginx/sites-available/default</code></pre><p>中间确实饶了不少弯，其实配置时候即使根据教程也应该更仔细一点。<br><br></p><h1 id="WordPress"><a href="#WordPress" class="headerlink" title="WordPress"></a>WordPress</h1><h2 id="Error-establishing-a-database-connection"><a href="#Error-establishing-a-database-connection" class="headerlink" title="Error establishing a database connection"></a>Error establishing a database connection</h2><p>连接数据库出错，折腾了很久MySQL最后发现其实是wordpress配置文件问题：</p><pre><code>vi /root/wordpress/wp-config.php</code></pre><p>经过对比发现是用户名多写了@localhost<br>正确的配置图片如下：<br><img src="/images/wp-config.png" alt="WordPress配置"><br><br></p><h2 id="图片剪裁问题"><a href="#图片剪裁问题" class="headerlink" title="图片剪裁问题"></a>图片剪裁问题</h2><p>问题：在WordPress中使用裁剪图片功能时，出现:“在裁剪您的图像时发生了错误。” 或者 ”There has been an error cropping your image.”</p><p>原因：缺少PHP GD库。</p><p>Ubuntu下运行：</p><pre><code>sudo apt-get install php5-gd</code></pre><p>Linux 下运行：</p><pre><code>yun install php-gd</code></pre><p>然后重启nginx即可。</p><pre><code>service nginx restart</code></pre><p>原因分析：</p><p>没有GD库，会失去的功能；<br>这些涉及图片处理的功能都需要GD库<br>– 图片水印<br>– 缩略图<br>– 验证码</p><p>参考：<br><a href="https://blog.csdn.net/coderPark/article/details/50097025" target="_blank" rel="noopener">https://blog.csdn.net/coderPark/article/details/50097025</a></p>]]></content>
+    <content type="html"><![CDATA[<blockquote><p>记录建站中踩过的一些坑。<br>欢迎访问我的个人网站：<a href="dongjinguo.com">dongjinguo.com</a></p></blockquote><a id="more"></a><h1 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h1><h2 id="Nginx-502-Bad-Gateway"><a href="#Nginx-502-Bad-Gateway" class="headerlink" title="Nginx 502 Bad Gateway"></a>Nginx 502 Bad Gateway</h2><p>这个问题找了好久才解决，从中文到英文都查、试了个遍，发现我这边是php-fpm版本不一问题。<br>首先检查/var/log/nginx中的错误日志，发现如下错误：<br>unix:/run/php/php7.0-fpm.sock failed (13: Permission denied) while connecting to upstream<br>检查发现服务器php版本是7.2，于是修改Nginx配置文件把7.0更改为7.2最终解决。</p><pre><code>vim /etc/nginx/sites-available/default</code></pre><p>中间确实饶了不少弯，其实配置时候即使根据教程也应该更仔细一点。<br><br></p><h1 id="WordPress"><a href="#WordPress" class="headerlink" title="WordPress"></a>WordPress</h1><h2 id="Error-establishing-a-database-connection"><a href="#Error-establishing-a-database-connection" class="headerlink" title="Error establishing a database connection"></a>Error establishing a database connection</h2><p>连接数据库出错，折腾了很久MySQL最后发现其实是wordpress配置文件问题：</p><pre><code>vi /root/wordpress/wp-config.php</code></pre><p>经过对比发现是用户名多写了@localhost<br>正确的配置图片如下：<br><img src="/images/wp-config.png" alt="WordPress配置"><br><br></p><h2 id="图片剪裁问题"><a href="#图片剪裁问题" class="headerlink" title="图片剪裁问题"></a>图片剪裁问题</h2><p>问题：在WordPress中使用裁剪图片功能时，出现:“在裁剪您的图像时发生了错误。” 或者 ”There has been an error cropping your image.”</p><p>原因：缺少PHP GD库。</p><p>Ubuntu下运行：</p><pre><code>sudo apt-get install php5-gd</code></pre><p>Linux 下运行：</p><pre><code>yun install php-gd</code></pre><p>然后重启nginx即可。</p><pre><code>service nginx restart</code></pre><p>原因分析：</p><p>没有GD库，会失去的功能；<br>这些涉及图片处理的功能都需要GD库<br>– 图片水印<br>– 缩略图<br>– 验证码</p><p>参考：<br><a href="https://blog.csdn.net/coderPark/article/details/50097025" target="_blank" rel="noopener">https://blog.csdn.net/coderPark/article/details/50097025</a></p>]]></content>
     
     <summary type="html">
     
       &lt;blockquote&gt;
-&lt;p&gt;记录建站中踩过的一些坑。&lt;br&gt;欢迎访问我的个人网站：dongjinguo.com&lt;br&gt;
+&lt;p&gt;记录建站中踩过的一些坑。&lt;br&gt;欢迎访问我的个人网站：&lt;a href=&quot;dongjinguo.com&quot;&gt;dongjinguo.com&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
     
     </summary>
     
