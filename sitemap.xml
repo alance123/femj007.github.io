@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.dongjinguo.com/2018-09-25/WebStation/</loc>
+    
+    <lastmod>2018-09-30T11:58:26.011Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.dongjinguo.com/2018-09-23/qqbot/</loc>
+    
+    <lastmod>2018-09-30T11:58:22.493Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.dongjinguo.com/2018-09-30/errors/</loc>
+    
+    <lastmod>2018-09-30T11:58:19.302Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.dongjinguo.com/categories/index.html</loc>
     
     <lastmod>2018-09-30T11:38:43.147Z</lastmod>
@@ -12,27 +33,6 @@
     <loc>http://blog.dongjinguo.com/tags/index.html</loc>
     
     <lastmod>2018-09-30T11:38:38.984Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.dongjinguo.com/2018-09-25/WebStation/</loc>
-    
-    <lastmod>2018-09-30T11:33:03.629Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.dongjinguo.com/2018-09-23/qqbot/</loc>
-    
-    <lastmod>2018-09-30T11:32:51.637Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.dongjinguo.com/2018-09-30/errors/</loc>
-    
-    <lastmod>2018-09-30T11:32:37.627Z</lastmod>
     
   </url>
   
