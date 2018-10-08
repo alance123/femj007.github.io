@@ -6,10 +6,10 @@
     <content type="text"><![CDATA[最近博客加载一直很慢，并且底部访问量统计加载不出来，是什么原因呢？记一个学习HTTP协议时偶然发现并解决的问题。 题外话：最近在模联开发团队做一个国内高校模联团队交流平台的网站，正好学习+实战web开发。 1. 学习HTTP调查blog问题原因使用Chrome浏览器，按F12打开开发者工具，选择Network选项（显示浏览器和服务器的通信），打开我的博客 http://blog.dongjinguo.com/ ，这时候发现主要界面加载出来后但整个网站仍然一直处于刷新状态，将Network中的记录按照时间从长到短排序，发现第一个状态是404，链接的地址是 https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js ，将其打开。 2. 发现busuanzi（不蒜子）打开后是如下页面： 把这个链接和hexo一起拖去Google一下，发现排第一的就是：“busuanzi统计挂了？” busuanzi正好是我的博客用来统计访客数量的工具。 在下面的搜索项中发现busuanzi官网，打开： 因七牛强制过期『dn-lbstatics.qbox.me』域名，与客服沟通无果，只能更换域名到『busuanzi.ibruce.info』！ 发现问题所在，无法解析到原来的域名导致我的博客访问过慢出错。 找到themes/next/layout/_partials目录下的footer.swig文件，将原来的域名改为新域名，成功解决问题。]]></content>
       <categories>
         <category>web</category>
-        <category>bug</category>
       </categories>
       <tags>
         <tag>web</tag>
+        <tag>bug</tag>
       </tags>
   </entry>
   <entry>
