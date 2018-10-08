@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.dongjinguo.com/"/>
-  <updated>2018-09-30T11:58:19.302Z</updated>
+  <updated>2018-10-08T14:58:29.590Z</updated>
   <id>http://blog.dongjinguo.com/</id>
   
   <author>
@@ -17,11 +17,37 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>由busuanzi引起的博客访问变慢</title>
+    <link href="http://blog.dongjinguo.com/2018-10-09/busuanzi/"/>
+    <id>http://blog.dongjinguo.com/2018-10-09/busuanzi/</id>
+    <published>2018-10-08T17:33:33.000Z</published>
+    <updated>2018-10-08T14:58:29.590Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>最近博客加载一直很慢，并且底部访问量统计加载不出来，是什么原因呢？<br>记一个学习HTTP协议时偶然发现并解决的问题。</p></blockquote><a id="more"></a><blockquote><p>题外话：最近在模联开发团队做一个国内高校模联团队交流平台的网站，正好学习+实战web开发。</p></blockquote><p><br></p><h1 id="1-学习HTTP调查blog问题原因"><a href="#1-学习HTTP调查blog问题原因" class="headerlink" title="1. 学习HTTP调查blog问题原因"></a>1. 学习HTTP调查blog问题原因</h1><p>使用Chrome浏览器，按F12打开开发者工具，选择Network选项（显示浏览器和服务器的通信），打开我的博客 <a href="http://blog.dongjinguo.com/">http://blog.dongjinguo.com/</a> ，这时候发现主要界面加载出来后但整个网站仍然一直处于刷新状态，将Network中的记录按照时间从长到短排序，发现第一个状态是404，链接的地址是 <a href="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" target="_blank" rel="noopener">https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js</a> ，将其打开。</p><h1 id="2-发现busuanzi（不蒜子）"><a href="#2-发现busuanzi（不蒜子）" class="headerlink" title="2. 发现busuanzi（不蒜子）"></a>2. 发现busuanzi（不蒜子）</h1><p>打开后是如下页面：<br><img src="/images/busuanzi.png" alt="error"></p><p>把这个链接和hexo一起拖去Google一下，发现排第一的就是：“busuanzi统计挂了？”</p><p>busuanzi正好是我的博客用来统计访客数量的工具。</p><p>在下面的搜索项中发现busuanzi官网，打开：<br><img src="/images/busuan.png" alt="error"></p><blockquote><p>因七牛强制过期『dn-lbstatics.qbox.me』域名，与客服沟通无果，只能更换域名到『busuanzi.ibruce.info』！</p></blockquote><p>发现问题所在，无法解析到原来的域名导致我的博客访问过慢出错。</p><p>找到themes/next/layout/_partials目录下的footer.swig文件，将原来的域名改为新域名，成功解决问题。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;最近博客加载一直很慢，并且底部访问量统计加载不出来，是什么原因呢？&lt;br&gt;记一个学习HTTP协议时偶然发现并解决的问题。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="web" scheme="http://blog.dongjinguo.com/categories/web/"/>
+    
+      <category term="bug" scheme="http://blog.dongjinguo.com/categories/web/bug/"/>
+    
+    
+      <category term="web" scheme="http://blog.dongjinguo.com/tags/web/"/>
+    
+  </entry>
+  
+  <entry>
     <title>记录web开发中遇到的问题及解决（持续更新）</title>
     <link href="http://blog.dongjinguo.com/2018-09-30/errors/"/>
     <id>http://blog.dongjinguo.com/2018-09-30/errors/</id>
     <published>2018-09-29T16:54:06.000Z</published>
-    <updated>2018-09-30T11:58:19.302Z</updated>
+    <updated>2018-10-08T14:33:24.644Z</updated>
     
     <content type="html"><![CDATA[<blockquote><p>记录建站中踩过的一些坑。<br>欢迎访问我的个人网站：<a href="http://dongjinguo.com" target="_blank" rel="noopener">dongjinguo.com</a></p></blockquote><a id="more"></a><h1 id="1-Nginx"><a href="#1-Nginx" class="headerlink" title="1. Nginx"></a>1. Nginx</h1><h2 id="Nginx-502-Bad-Gateway"><a href="#Nginx-502-Bad-Gateway" class="headerlink" title="Nginx 502 Bad Gateway"></a>Nginx 502 Bad Gateway</h2><p>这个问题找了好久才解决，从中文到英文都查、试了个遍，发现我这边是php-fpm版本不一问题。<br>首先检查/var/log/nginx中的错误日志，发现如下错误：<br>unix:/run/php/php7.0-fpm.sock failed (13: Permission denied) while connecting to upstream<br>检查发现服务器php版本是7.2，于是修改Nginx配置文件把7.0更改为7.2最终解决。</p><pre><code>vim /etc/nginx/sites-available/default</code></pre><p>中间确实饶了不少弯，其实配置时候即使根据教程也应该更仔细一点。<br><br></p><h1 id="2-WordPress"><a href="#2-WordPress" class="headerlink" title="2. WordPress"></a>2. WordPress</h1><h2 id="Error-establishing-a-database-connection"><a href="#Error-establishing-a-database-connection" class="headerlink" title="Error establishing a database connection"></a>Error establishing a database connection</h2><p>连接数据库出错，折腾了很久MySQL最后发现其实是wordpress配置文件问题：</p><pre><code>vi /root/wordpress/wp-config.php</code></pre><p>经过对比发现是用户名多写了@localhost<br>正确的配置图片如下：<br><img src="/images/wp-config.png" alt="WordPress配置"><br><br></p><h2 id="图片剪裁问题"><a href="#图片剪裁问题" class="headerlink" title="图片剪裁问题"></a>图片剪裁问题</h2><p>问题：在WordPress中使用裁剪图片功能时，出现:“在裁剪您的图像时发生了错误。” 或者 ”There has been an error cropping your image.”</p><p>原因：缺少PHP GD库。</p><p>Ubuntu下运行：</p><pre><code>sudo apt-get install php5-gd</code></pre><p>Linux 下运行：</p><pre><code>yun install php-gd</code></pre><p>然后重启nginx即可。</p><pre><code>service nginx restart</code></pre><p>原因分析：</p><p>没有GD库，会失去的功能；<br>这些涉及图片处理的功能都需要GD库<br>– 图片水印<br>– 缩略图<br>– 验证码</p><p>参考：<br><a href="https://blog.csdn.net/coderPark/article/details/50097025" target="_blank" rel="noopener">https://blog.csdn.net/coderPark/article/details/50097025</a></p>]]></content>
     
@@ -41,6 +67,8 @@
       <category term="WordPress" scheme="http://blog.dongjinguo.com/tags/WordPress/"/>
     
       <category term="Nginx" scheme="http://blog.dongjinguo.com/tags/Nginx/"/>
+    
+      <category term="bug" scheme="http://blog.dongjinguo.com/tags/bug/"/>
     
   </entry>
   
