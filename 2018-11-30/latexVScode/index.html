@@ -25,10 +25,6 @@
 
 
 
-  
-  
-  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
-
 
 
 
@@ -128,7 +124,7 @@
 <meta property="og:description" content="latexmk: The script engine could not be found.latexmk: Data: scriptEngine=”perl.exe”, scriptName=”latexmk”">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://blog.dongjinguo.com/images/latex.png">
-<meta property="og:updated_time" content="2018-11-30T09:35:47.991Z">
+<meta property="og:updated_time" content="2018-11-30T09:41:41.991Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Visual Studio Code 配置 Latex环境">
 <meta name="twitter:description" content="latexmk: The script engine could not be found.latexmk: Data: scriptEngine=”perl.exe”, scriptName=”latexmk”">
@@ -399,7 +395,7 @@
                 
               
 
-              <time title="创建时间：2018-11-30 15:19:33 / 修改时间：17:35:47" itemprop="dateCreated datePublished" datetime="2018-11-30T15:19:33+08:00">2018-11-30</time>
+              <time title="创建时间：2018-11-30 15:19:33 / 修改时间：17:41:41" itemprop="dateCreated datePublished" datetime="2018-11-30T15:19:33+08:00">2018-11-30</time>
             
 
             
@@ -479,8 +475,10 @@
 
       
         <blockquote>
-<p>latexmk: The script engine could not be found.<br>latexmk: Data: scriptEngine=”perl.exe”, scriptName=”latexmk”<br><a id="more"></a><br><br><br>遇到这个问题后，我首先使用latex自带IDE编译文件。（MiKTeX）</p>
+<p>latexmk: The script engine could not be found.<br>latexmk: Data: scriptEngine=”perl.exe”, scriptName=”latexmk”</p>
 </blockquote>
+<a id="more"></a>
+<p><br><br>遇到这个问题后，我首先使用latex自带IDE编译文件。（MiKTeX）</p>
 <p>发现缺少许多必要的文件并且自动下载经常失败。</p>
 <p>搜索相关问题后，首先自己检查：（在终端输入）</p>
 <pre><code>latexmk --version
@@ -491,7 +489,6 @@
 <p>没有问题，接下来打开MiKTeX-console：</p>
 <pre><code>MiKTeX-console
 </code></pre><p>检查更新。<br>这时候发现存在无法连接服务器的问题，打开连接选项，选择国内的站点测试，找到一个可以连接的镜像站点。将所有需要更新的组件进行更新。</p>
-<p><br></p>
 <p>这时候，我已经可以通过使用MiKTeX自带的IDE进行latex文件的编译和PDF显示了，下一步解决文章开头的VS Code下latex编译的问题。</p>
 <blockquote>
 <p>latexmk: The script engine could not be found.<br>latexmk: Data: scriptEngine=”perl.exe”, scriptName=”latexmk”</p>
@@ -501,8 +498,8 @@
 <p>安装完成后重启VS Code，即可成功编译显示PDF文件，如下图：</p>
 <p><img src="/images/latex.png" alt="VS Code and Latex"></p>
 <p>参考链接：</p>
-<p><a href="https://github.com/James-Yu/LaTeX-Workshop/issues/192" target="_blank" rel="noopener">latexmk</a></p>
-<p>[perl]hexos (<a href="https://tex.stackexchange.com/questions/461954/latexmk-error-on-vs-code" target="_blank" rel="noopener">https://tex.stackexchange.com/questions/461954/latexmk-error-on-vs-code</a>)</p>
+<p><a href="https://github.com/James-Yu/LaTeX-Workshop/issues/192" target="_blank" rel="noopener">https://github.com/James-Yu/LaTeX-Workshop/issues/192</a></p>
+<p><a href="https://tex.stackexchange.com/questions/461954/latexmk-error-on-vs-code" target="_blank" rel="noopener">https://tex.stackexchange.com/questions/461954/latexmk-error-on-vs-code</a></p>
 
       
     </div>
@@ -524,7 +521,7 @@
   <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
   <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
   <p><span>文章作者:</span><a href="/" title="访问 Jinguo Dong (董金国) 的个人博客">Jinguo Dong (董金国)</a></p>
-  <p><span>最后更新:</span>2018年11月30日 17:11:47</p>
+  <p><span>最后更新:</span>2018年11月30日 17:11:41</p>
   <p><span>原始链接:</span><a href="/2018-11-30/latexVScode/" title="Visual Studio Code 配置 Latex环境">http://blog.dongjinguo.com/2018-11-30/latexVScode/</a></p>
   <p><span>版权声明:</span>本博客所有文章除特别声明外，均采用 <i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/3.0/" target="_blank" title="Attribution-NonCommercial-ShareAlike 3.0 Unported (CC BY-NC-SA 3.0)"> BY-NC-SA 3.0 许可协议</a>，转载请注明出处！</p>  
 </div>
@@ -549,26 +546,6 @@
       
 
       
-      
-        <div class="post-widgets">
-        
-
-        
-
-        
-          
-          <div class="social_share">
-            
-            
-               <div id="needsharebutton-postbottom">
-                 <span class="btn">
-                    <i class="fa fa-share-alt" aria-hidden="true"></i>
-                 </span>
-               </div>
-            
-          </div>
-        
-        </div>
       
       
 
@@ -1337,32 +1314,6 @@
   
 
   
-  
-  
-  <script src="/lib/needsharebutton/needsharebutton.js"></script>
-  
-<!-- needsharebutton Javascript file -->
-<script src="js/needsharebutton.min.js"></script>
-<!-- needsharebutton CSS file -->
-<link href="css/needsharebutton.min.css" rel="stylesheet" />
-
-  <script>
-    
-      pbOptions = {};
-      
-          pbOptions.iconStyle = "box";
-      
-          pbOptions.boxForm = "horizontal";
-      
-          pbOptions.position = "bottomCenter";
-      
-          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
-      
-      new needShareButton('#needsharebutton-postbottom', pbOptions);
-    
-    
-  </script>
-
   
 
   

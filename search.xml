@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[Visual Studio Code 配置 Latex环境]]></title>
     <url>%2F2018-11-30%2FlatexVScode%2F</url>
-    <content type="text"><![CDATA[latexmk: The script engine could not be found.latexmk: Data: scriptEngine=”perl.exe”, scriptName=”latexmk”遇到这个问题后，我首先使用latex自带IDE编译文件。（MiKTeX） 发现缺少许多必要的文件并且自动下载经常失败。 搜索相关问题后，首先自己检查：（在终端输入） latexmk --version 显示： Latexmk, John Collins, 25 October 2018. Version 4.61 没有问题，接下来打开MiKTeX-console： MiKTeX-console 检查更新。这时候发现存在无法连接服务器的问题，打开连接选项，选择国内的站点测试，找到一个可以连接的镜像站点。将所有需要更新的组件进行更新。 这时候，我已经可以通过使用MiKTeX自带的IDE进行latex文件的编译和PDF显示了，下一步解决文章开头的VS Code下latex编译的问题。 latexmk: The script engine could not be found.latexmk: Data: scriptEngine=”perl.exe”, scriptName=”latexmk” 这个问题其实也很简单，没有安装perl。打开下面的网址下载安装即可。 perl 安装完成后重启VS Code，即可成功编译显示PDF文件，如下图： 参考链接： latexmk [perl]hexos (https://tex.stackexchange.com/questions/461954/latexmk-error-on-vs-code)]]></content>
+    <content type="text"><![CDATA[latexmk: The script engine could not be found.latexmk: Data: scriptEngine=”perl.exe”, scriptName=”latexmk” 遇到这个问题后，我首先使用latex自带IDE编译文件。（MiKTeX） 发现缺少许多必要的文件并且自动下载经常失败。 搜索相关问题后，首先自己检查：（在终端输入） latexmk --version 显示： Latexmk, John Collins, 25 October 2018. Version 4.61 没有问题，接下来打开MiKTeX-console： MiKTeX-console 检查更新。这时候发现存在无法连接服务器的问题，打开连接选项，选择国内的站点测试，找到一个可以连接的镜像站点。将所有需要更新的组件进行更新。 这时候，我已经可以通过使用MiKTeX自带的IDE进行latex文件的编译和PDF显示了，下一步解决文章开头的VS Code下latex编译的问题。 latexmk: The script engine could not be found.latexmk: Data: scriptEngine=”perl.exe”, scriptName=”latexmk” 这个问题其实也很简单，没有安装perl。打开下面的网址下载安装即可。 perl 安装完成后重启VS Code，即可成功编译显示PDF文件，如下图： 参考链接： https://github.com/James-Yu/LaTeX-Workshop/issues/192 https://tex.stackexchange.com/questions/461954/latexmk-error-on-vs-code]]></content>
       <categories>
         <category>latex</category>
       </categories>
@@ -33,9 +33,9 @@
       </categories>
       <tags>
         <tag>web</tag>
+        <tag>bug</tag>
         <tag>WordPress</tag>
         <tag>Nginx</tag>
-        <tag>bug</tag>
       </tags>
   </entry>
   <entry>
@@ -47,9 +47,9 @@
       </categories>
       <tags>
         <tag>web</tag>
+        <tag>建站</tag>
         <tag>WordPress</tag>
         <tag>Nginx</tag>
-        <tag>建站</tag>
         <tag>Apache</tag>
         <tag>PHP</tag>
         <tag>MySql</tag>

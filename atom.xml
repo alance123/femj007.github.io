@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.dongjinguo.com/"/>
-  <updated>2018-11-30T09:35:47.991Z</updated>
+  <updated>2018-11-30T09:41:41.991Z</updated>
   <id>http://blog.dongjinguo.com/</id>
   
   <author>
@@ -21,14 +21,15 @@
     <link href="http://blog.dongjinguo.com/2018-11-30/latexVScode/"/>
     <id>http://blog.dongjinguo.com/2018-11-30/latexVScode/</id>
     <published>2018-11-30T07:19:33.000Z</published>
-    <updated>2018-11-30T09:35:47.991Z</updated>
+    <updated>2018-11-30T09:41:41.991Z</updated>
     
-    <content type="html"><![CDATA[<blockquote><p>latexmk: The script engine could not be found.<br>latexmk: Data: scriptEngine=”perl.exe”, scriptName=”latexmk”<br><a id="more"></a><br><br><br>遇到这个问题后，我首先使用latex自带IDE编译文件。（MiKTeX）</p></blockquote><p>发现缺少许多必要的文件并且自动下载经常失败。</p><p>搜索相关问题后，首先自己检查：（在终端输入）</p><pre><code>latexmk --version</code></pre><p>显示：</p><blockquote><p>Latexmk, John Collins, 25 October 2018. Version 4.61</p></blockquote><p>没有问题，接下来打开MiKTeX-console：</p><pre><code>MiKTeX-console</code></pre><p>检查更新。<br>这时候发现存在无法连接服务器的问题，打开连接选项，选择国内的站点测试，找到一个可以连接的镜像站点。将所有需要更新的组件进行更新。</p><p><br></p><p>这时候，我已经可以通过使用MiKTeX自带的IDE进行latex文件的编译和PDF显示了，下一步解决文章开头的VS Code下latex编译的问题。</p><blockquote><p>latexmk: The script engine could not be found.<br>latexmk: Data: scriptEngine=”perl.exe”, scriptName=”latexmk”</p></blockquote><p>这个问题其实也很简单，没有安装perl。打开下面的网址下载安装即可。</p><p><a href="https://www.perl.org/get.html#win32" target="_blank" rel="noopener">perl</a></p><p>安装完成后重启VS Code，即可成功编译显示PDF文件，如下图：</p><p><img src="/images/latex.png" alt="VS Code and Latex"></p><p>参考链接：</p><p><a href="https://github.com/James-Yu/LaTeX-Workshop/issues/192" target="_blank" rel="noopener">latexmk</a></p><p>[perl]hexos (<a href="https://tex.stackexchange.com/questions/461954/latexmk-error-on-vs-code" target="_blank" rel="noopener">https://tex.stackexchange.com/questions/461954/latexmk-error-on-vs-code</a>)</p>]]></content>
+    <content type="html"><![CDATA[<blockquote><p>latexmk: The script engine could not be found.<br>latexmk: Data: scriptEngine=”perl.exe”, scriptName=”latexmk”</p></blockquote><a id="more"></a><p><br><br>遇到这个问题后，我首先使用latex自带IDE编译文件。（MiKTeX）</p><p>发现缺少许多必要的文件并且自动下载经常失败。</p><p>搜索相关问题后，首先自己检查：（在终端输入）</p><pre><code>latexmk --version</code></pre><p>显示：</p><blockquote><p>Latexmk, John Collins, 25 October 2018. Version 4.61</p></blockquote><p>没有问题，接下来打开MiKTeX-console：</p><pre><code>MiKTeX-console</code></pre><p>检查更新。<br>这时候发现存在无法连接服务器的问题，打开连接选项，选择国内的站点测试，找到一个可以连接的镜像站点。将所有需要更新的组件进行更新。</p><p>这时候，我已经可以通过使用MiKTeX自带的IDE进行latex文件的编译和PDF显示了，下一步解决文章开头的VS Code下latex编译的问题。</p><blockquote><p>latexmk: The script engine could not be found.<br>latexmk: Data: scriptEngine=”perl.exe”, scriptName=”latexmk”</p></blockquote><p>这个问题其实也很简单，没有安装perl。打开下面的网址下载安装即可。</p><p><a href="https://www.perl.org/get.html#win32" target="_blank" rel="noopener">perl</a></p><p>安装完成后重启VS Code，即可成功编译显示PDF文件，如下图：</p><p><img src="/images/latex.png" alt="VS Code and Latex"></p><p>参考链接：</p><p><a href="https://github.com/James-Yu/LaTeX-Workshop/issues/192" target="_blank" rel="noopener">https://github.com/James-Yu/LaTeX-Workshop/issues/192</a></p><p><a href="https://tex.stackexchange.com/questions/461954/latexmk-error-on-vs-code" target="_blank" rel="noopener">https://tex.stackexchange.com/questions/461954/latexmk-error-on-vs-code</a></p>]]></content>
     
     <summary type="html">
     
       &lt;blockquote&gt;
-&lt;p&gt;latexmk: The script engine could not be found.&lt;br&gt;latexmk: Data: scriptEngine=”perl.exe”, scriptName=”latexmk”&lt;br&gt;
+&lt;p&gt;latexmk: The script engine could not be found.&lt;br&gt;latexmk: Data: scriptEngine=”perl.exe”, scriptName=”latexmk”&lt;/p&gt;
+&lt;/blockquote&gt;
     
     </summary>
     
@@ -89,11 +90,11 @@
     
       <category term="web" scheme="http://blog.dongjinguo.com/tags/web/"/>
     
+      <category term="bug" scheme="http://blog.dongjinguo.com/tags/bug/"/>
+    
       <category term="WordPress" scheme="http://blog.dongjinguo.com/tags/WordPress/"/>
     
       <category term="Nginx" scheme="http://blog.dongjinguo.com/tags/Nginx/"/>
-    
-      <category term="bug" scheme="http://blog.dongjinguo.com/tags/bug/"/>
     
   </entry>
   
@@ -119,11 +120,11 @@
     
       <category term="web" scheme="http://blog.dongjinguo.com/tags/web/"/>
     
+      <category term="建站" scheme="http://blog.dongjinguo.com/tags/%E5%BB%BA%E7%AB%99/"/>
+    
       <category term="WordPress" scheme="http://blog.dongjinguo.com/tags/WordPress/"/>
     
       <category term="Nginx" scheme="http://blog.dongjinguo.com/tags/Nginx/"/>
-    
-      <category term="建站" scheme="http://blog.dongjinguo.com/tags/%E5%BB%BA%E7%AB%99/"/>
     
       <category term="Apache" scheme="http://blog.dongjinguo.com/tags/Apache/"/>
     
