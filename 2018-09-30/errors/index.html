@@ -116,7 +116,7 @@
       window.location.href = window.location.href.replace(/yuan-ji.coding.me/,"femj007.github.io")
 </script>
   <meta name="description" content="记录建站中踩过的一些坑。欢迎访问我的个人网站：dongjinguo.com">
-<meta name="keywords" content="web,bug,WordPress,Nginx">
+<meta name="keywords" content="web,WordPress,Nginx,bug">
 <meta property="og:type" content="article">
 <meta property="og:title" content="记录web开发中遇到的问题及解决（持续更新）">
 <meta property="og:url" content="http://blog.dongjinguo.com/2018-09-30/errors/index.html">
@@ -453,9 +453,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2018-09-30/errors/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018-09-30/errors/" itemprop="commentCount"></span>
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018-09-30/errors/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -555,11 +553,11 @@
           
             <a href="/tags/web/" rel="tag"># web</a>
           
-            <a href="/tags/bug/" rel="tag"># bug</a>
-          
             <a href="/tags/WordPress/" rel="tag"># WordPress</a>
           
             <a href="/tags/Nginx/" rel="tag"># Nginx</a>
+          
+            <a href="/tags/bug/" rel="tag"># bug</a>
           
         </div>
       
@@ -608,12 +606,7 @@
 
   
     <div class="comments" id="comments">
-      <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
-      </div>
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTU0OS8xNjA3Ng=="></div>
     </div>
 
   
@@ -946,30 +939,23 @@
 
   
 
-  
-    <script id="dsq-count-scr" src="https://Jinguo.disqus.com/count.js" async></script>
-  
+
 
   
     <script type="text/javascript">
-      var disqus_config = function () {
-        this.page.url = 'http://blog.dongjinguo.com/2018-09-30/errors/';
-        this.page.identifier = '2018-09-30/errors/';
-        this.page.title = '记录web开发中遇到的问题及解决（持续更新）';
-        };
-      function loadComments () {
-        var d = document, s = d.createElement('script');
-        s.src = 'https://Jinguo.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', '' + +new Date());
-        (d.head || d.body).appendChild(s);
-      }
-      
-        loadComments();
-      
+      window.livereOptions = {
+        refer: '2018-09-30/errors/'
+      };
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
     </script>
   
-
-
 
 
 
