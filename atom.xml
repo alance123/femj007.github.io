@@ -36,9 +36,9 @@
       <category term="latex" scheme="http://blog.dongjinguo.com/categories/latex/"/>
     
     
-      <category term="bug" scheme="http://blog.dongjinguo.com/tags/bug/"/>
-    
       <category term="latex" scheme="http://blog.dongjinguo.com/tags/latex/"/>
+    
+      <category term="bug" scheme="http://blog.dongjinguo.com/tags/bug/"/>
     
   </entry>
   
@@ -62,9 +62,9 @@
       <category term="web" scheme="http://blog.dongjinguo.com/categories/web/"/>
     
     
-      <category term="web" scheme="http://blog.dongjinguo.com/tags/web/"/>
-    
       <category term="bug" scheme="http://blog.dongjinguo.com/tags/bug/"/>
+    
+      <category term="web" scheme="http://blog.dongjinguo.com/tags/web/"/>
     
   </entry>
   
@@ -88,9 +88,9 @@
       <category term="web" scheme="http://blog.dongjinguo.com/categories/web/"/>
     
     
-      <category term="web" scheme="http://blog.dongjinguo.com/tags/web/"/>
-    
       <category term="bug" scheme="http://blog.dongjinguo.com/tags/bug/"/>
+    
+      <category term="web" scheme="http://blog.dongjinguo.com/tags/web/"/>
     
       <category term="WordPress" scheme="http://blog.dongjinguo.com/tags/WordPress/"/>
     
@@ -120,11 +120,11 @@
     
       <category term="web" scheme="http://blog.dongjinguo.com/tags/web/"/>
     
-      <category term="建站" scheme="http://blog.dongjinguo.com/tags/%E5%BB%BA%E7%AB%99/"/>
-    
       <category term="WordPress" scheme="http://blog.dongjinguo.com/tags/WordPress/"/>
     
       <category term="Nginx" scheme="http://blog.dongjinguo.com/tags/Nginx/"/>
+    
+      <category term="建站" scheme="http://blog.dongjinguo.com/tags/%E5%BB%BA%E7%AB%99/"/>
     
       <category term="Apache" scheme="http://blog.dongjinguo.com/tags/Apache/"/>
     
