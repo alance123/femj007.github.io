@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.dongjinguo.com/categories/index.html</loc>
+    
+    <lastmod>2018-11-30T16:28:06.846Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.dongjinguo.com/resume/index.html</loc>
     
-    <lastmod>2018-11-30T16:22:35.789Z</lastmod>
+    <lastmod>2018-11-30T16:26:48.724Z</lastmod>
     
   </url>
   
@@ -40,13 +47,6 @@
     <loc>http://blog.dongjinguo.com/2018-09-25/WebStation/</loc>
     
     <lastmod>2018-09-30T11:58:26.011Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.dongjinguo.com/categories/index.html</loc>
-    
-    <lastmod>2018-09-30T11:38:43.147Z</lastmod>
     
   </url>
   

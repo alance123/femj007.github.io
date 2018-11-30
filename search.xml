@@ -8,8 +8,8 @@
         <category>latex</category>
       </categories>
       <tags>
-        <tag>latex</tag>
         <tag>bug</tag>
+        <tag>latex</tag>
       </tags>
   </entry>
   <entry>
@@ -20,8 +20,8 @@
         <category>web</category>
       </categories>
       <tags>
-        <tag>bug</tag>
         <tag>web</tag>
+        <tag>bug</tag>
       </tags>
   </entry>
   <entry>
@@ -32,8 +32,8 @@
         <category>web</category>
       </categories>
       <tags>
-        <tag>bug</tag>
         <tag>web</tag>
+        <tag>bug</tag>
         <tag>WordPress</tag>
         <tag>Nginx</tag>
       </tags>
@@ -47,9 +47,9 @@
       </categories>
       <tags>
         <tag>web</tag>
+        <tag>建站</tag>
         <tag>WordPress</tag>
         <tag>Nginx</tag>
-        <tag>建站</tag>
         <tag>Apache</tag>
         <tag>PHP</tag>
         <tag>MySql</tag>
