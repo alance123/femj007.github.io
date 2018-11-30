@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://blog.dongjinguo.com/categories/index.html</loc>
+    <loc>http://blog.dongjinguo.com/resume/index.html</loc>
     
-    <lastmod>2018-11-30T16:28:06.846Z</lastmod>
+    <lastmod>2018-11-30T16:47:35.497Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://blog.dongjinguo.com/resume/index.html</loc>
+    <loc>http://blog.dongjinguo.com/tags/index.html</loc>
     
-    <lastmod>2018-11-30T16:26:48.724Z</lastmod>
+    <lastmod>2018-11-30T16:38:21.629Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.dongjinguo.com/categories/index.html</loc>
+    
+    <lastmod>2018-11-30T16:28:06.846Z</lastmod>
     
   </url>
   
@@ -47,13 +54,6 @@
     <loc>http://blog.dongjinguo.com/2018-09-25/WebStation/</loc>
     
     <lastmod>2018-09-30T11:58:26.011Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.dongjinguo.com/tags/index.html</loc>
-    
-    <lastmod>2018-09-30T11:38:38.984Z</lastmod>
     
   </url>
   
