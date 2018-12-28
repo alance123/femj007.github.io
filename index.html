@@ -405,9 +405,13 @@
                 
               
 
-              <time title="创建时间：2018-12-28 19:28:24" itemprop="dateCreated datePublished" datetime="2018-12-28T19:28:24+08:00">2018-12-28</time>
+              <time title="创建时间：2018-12-28 19:28:24 / 修改时间：20:14:28" itemprop="dateCreated datePublished" datetime="2018-12-28T19:28:24+08:00">2018-12-28</time>
             
 
+            
+              
+
+              
             
           </span>
 
@@ -423,7 +427,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/" itemprop="url" rel="index"><span itemprop="name">web</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a></span>
 
                 
                 
@@ -479,15 +483,19 @@
 
       
         
-          <blockquote>
-<p>“WebSocket connection to ‘ws://localhost:12345/‘ failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED”<br>最近在公司实习，使用QT开发需要导出分析报告，选择使用HTML&amp;JS进行页面渲染，那么问题来了，如何实现 C++ QT 和 JavaScript 的通信呢？<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018-12-28/qtwithjs/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
+            <blockquote>
+<figure class="highlight plain"><figcaption><span>connection to 'ws://localhost:12345/' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED"```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">&gt; 最近在公司实习，使用QT开发需要导出分析报告，选择使用HTML&amp;JS进行页面渲染，那么问题来了，如何实现 C++ QT 和 JavaScript 的通信呢？</span><br><span class="line">&lt;!-- more --&gt;</span><br><span class="line"></span><br><span class="line"># 前言</span><br><span class="line"></span><br><span class="line">WebEngineView是 QT5 新提供的web通信方法，可以实现服务端监听本地端口和客户端实现数据交互。</span><br><span class="line"></span><br><span class="line">参考 QT 5.12 官方文档： [WebEngineView QML Type](http://doc.qt.io/qt-5/qml-qtwebengine-webengineview.html)</span><br><span class="line"></span><br><span class="line">本篇博客将结合官方文档 StandAlone 示例以及自己实际开发中遇到的问题进行分析，如有不当之处欢迎批评指教。</span><br><span class="line"></span><br><span class="line"># 服务端</span><br><span class="line"></span><br><span class="line">```C++</span><br><span class="line">int main(int argc, char** argv)</span><br><span class="line">&#123;</span><br><span class="line">    QApplication app(argc, argv);</span><br><span class="line"></span><br><span class="line">    QFileInfo jsFileInfo(QDir::currentPath() + &quot;/qwebchannel.js&quot;);</span><br><span class="line"></span><br><span class="line">    if (!jsFileInfo.exists())</span><br><span class="line">        QFile::copy(&quot;:/qtwebchannel/qwebchannel.js&quot;,jsFileInfo.absoluteFilePath());</span><br><span class="line"></span><br><span class="line">    // setup the QWebSocketServer</span><br><span class="line">    QWebSocketServer server(QStringLiteral(&quot;QWebChannel Standalone Example Server&quot;), QWebSocketServer::NonSecureMode);</span><br><span class="line">    if (!server.listen(QHostAddress::LocalHost, 12345)) &#123;</span><br><span class="line">        qFatal(&quot;Failed to open web socket server.&quot;);</span><br><span class="line">        return 1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // wrap WebSocket clients in QWebChannelAbstractTransport objects</span><br><span class="line">    WebSocketClientWrapper clientWrapper(&amp;server);</span><br><span class="line"></span><br><span class="line">    // setup the channel</span><br><span class="line">    QWebChannel channel;</span><br><span class="line">    QObject::connect(&amp;clientWrapper, &amp;WebSocketClientWrapper::clientConnected,</span><br><span class="line">                     &amp;channel, &amp;QWebChannel::connectTo);</span><br><span class="line"></span><br><span class="line">    // setup the UI</span><br><span class="line">    Dialog dialog;</span><br><span class="line"></span><br><span class="line">    // setup the core and publish it to the QWebChannel</span><br><span class="line">    Core core(&amp;dialog);</span><br><span class="line">    channel.registerObject(QStringLiteral(&quot;core&quot;), &amp;core);</span><br><span class="line"></span><br><span class="line">    // open a browser window with the client HTML page</span><br><span class="line">    QUrl url = QUrl::fromLocalFile(BUILD_DIR &quot;/index.html&quot;);</span><br><span class="line">    QDesktopServices::openUrl(url);</span><br><span class="line"></span><br><span class="line">    dialog.displayMessage(Dialog::tr(&quot;Initialization complete, opening browser at %1.&quot;).arg(url.toDisplayString()));</span><br><span class="line">    dialog.show();</span><br><span class="line"></span><br><span class="line">    return app.exec();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>其实官方文档注释已经很清晰了，首先新建一个APP，然后连接官方提供的 <code>qwebchannel.js</code> 文件（这一步在大型项目中与示例可能不同）。</p>
+<p>接着进入正题，开启服务器监听端口，这里是端口<code>12345</code>，如果出错（端口被占用，往往是已经有程序开启监听此端口）则发出错误信息。</p>
+<p>然后是声明一个 QT 提供的WebSocketClientWrapper类型，它的内部还包含了一个自定义的类WebSocketTransport，这边就不进行深入剖析了，感兴趣可以自己分析一下它们的代码。</p>
+<p>接下来是建立通道连接，声明 QT 提供的QWebChannel对象，利用connect函数将信号和槽进行连接以实现通信连接。</p>
+<p>下面的几段代码主要涉及UI界面了，standalone 提供的是服务端使用QT界面，客户端是打开的HTML网页。</p>
+<p>接下来的Core个人认为用处不大，因为我们实际开发中使用的是自己的界面类（比如我这次使用的是一个打印报告界面），比较重要的是需要将它发给QWebChannel，</p>
+<figure class="highlight plain"><figcaption><span>&core);</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">双引号里的字符串（名称）需要和JavaScript中使用的相同。</span><br><span class="line"></span><br><span class="line">后面就是索引文件，打开这个页面。</span><br><span class="line"></span><br><span class="line">最后显示服务端界面。</span><br><span class="line"></span><br><span class="line"># 客户端</span><br><span class="line"></span><br><span class="line">官网示例中 JavaScript 代码直接写在HTML中，摘取如下：</span><br><span class="line"></span><br><span class="line">``` JavaScript</span><br><span class="line"></span><br><span class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;./qwebchannel.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">    //BEGIN SETUP</span><br><span class="line">    function output(message) &#123;</span><br><span class="line">        var output = document.getElementById(&quot;output&quot;);</span><br><span class="line">        output.innerHTML = output.innerHTML + message + &quot;\n&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    window.onload = function() &#123;</span><br><span class="line">        if (location.search != &quot;&quot;)</span><br><span class="line">            var baseUrl = (/[?&amp;]webChannelBaseUrl=([A-Za-z0-9\-:/\.]+)/.exec(location.search)[1]);</span><br><span class="line">        else</span><br><span class="line">            var baseUrl = &quot;ws://localhost:12345&quot;;</span><br><span class="line">        output(&quot;Connecting to WebSocket server at &quot; + baseUrl + &quot;.&quot;);</span><br><span class="line">        var socket = new WebSocket(baseUrl);</span><br><span class="line"></span><br><span class="line">        socket.onclose = function() &#123;</span><br><span class="line">            console.error(&quot;web channel closed&quot;);</span><br><span class="line">        &#125;;</span><br><span class="line">        socket.onerror = function(error) &#123;</span><br><span class="line">            console.error(&quot;web channel error: &quot; + error);</span><br><span class="line">        &#125;;</span><br><span class="line">        socket.onopen = function() &#123;</span><br><span class="line">            output(&quot;WebSocket connected, setting up QWebChannel.&quot;);</span><br><span class="line">            new QWebChannel(socket, function(channel) &#123;</span><br><span class="line">                // make core object accessible globally</span><br><span class="line">                window.core = channel.objects.core;</span><br><span class="line"></span><br><span class="line">                document.getElementById(&quot;send&quot;).onclick = function() &#123;</span><br><span class="line">                    var input = document.getElementById(&quot;input&quot;);</span><br><span class="line">                    var text = input.value;</span><br><span class="line">                    if (!text) &#123;</span><br><span class="line">                        return;</span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">                    output(&quot;Sent message: &quot; + text);</span><br><span class="line">                    input.value = &quot;&quot;;</span><br><span class="line">                    core.receiveText(text);</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                core.sendText.connect(function(message) &#123;</span><br><span class="line">                    output(&quot;Received message: &quot; + message);</span><br><span class="line">                &#125;);</span><br><span class="line"></span><br><span class="line">                core.receiveText(&quot;Client connected, ready to send/receive messages!&quot;);</span><br><span class="line">                output(&quot;Connected to WebChannel, ready to send/receive messages!&quot;);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    //END SETUP</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h1><h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1>
+          
         
       
     </div>
@@ -1592,7 +1600,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">3</span>
+                      
+                    
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1740,7 +1750,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共4.8k字</span>
+  <span class="post-count">博客全站共5.3k字</span>
 </div>
         
 
