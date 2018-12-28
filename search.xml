@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[qt5.12 C++与前端JS/HTML实现通信交互]]></title>
+    <url>%2F2018-12-28%2Fqtwithjs%2F</url>
+    <content type="text"><![CDATA[“WebSocket connection to ‘ws://localhost:12345/‘ failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED”最近在公司实习，使用QT开发需要导出分析报告，选择使用HTML&amp;JS进行页面渲染，那么问题来了，如何实现 C++ QT 和 JavaScript 的通信呢？ 前言WebEngineView是 QT5 新提供的web通信方法，可以实现服务端监听本地端口和客户端实现数据交互。 参考 QT 5.12 官方文档： WebEngineView QML Type 本篇博客将结合官方文档 StandAlone 示例以及自己实际开发中遇到的问题进行分析，如有不当之处欢迎批评指教。 服务端12345678910111213141516171819202122232425262728293031323334353637383940int main(int argc, char** argv)&#123; QApplication app(argc, argv); QFileInfo jsFileInfo(QDir::currentPath() + "/qwebchannel.js"); if (!jsFileInfo.exists()) QFile::copy(":/qtwebchannel/qwebchannel.js",jsFileInfo.absoluteFilePath()); // setup the QWebSocketServer QWebSocketServer server(QStringLiteral("QWebChannel Standalone Example Server"), QWebSocketServer::NonSecureMode); if (!server.listen(QHostAddress::LocalHost, 12345)) &#123; qFatal("Failed to open web socket server."); return 1; &#125; // wrap WebSocket clients in QWebChannelAbstractTransport objects WebSocketClientWrapper clientWrapper(&amp;server); // setup the channel QWebChannel channel; QObject::connect(&amp;clientWrapper, &amp;WebSocketClientWrapper::clientConnected, &amp;channel, &amp;QWebChannel::connectTo); // setup the UI Dialog dialog; // setup the core and publish it to the QWebChannel Core core(&amp;dialog); channel.registerObject(QStringLiteral("core"), &amp;core); // open a browser window with the client HTML page QUrl url = QUrl::fromLocalFile(BUILD_DIR "/index.html"); QDesktopServices::openUrl(url); dialog.displayMessage(Dialog::tr("Initialization complete, opening browser at %1.").arg(url.toDisplayString())); dialog.show(); return app.exec();&#125; 其实官方文档注释已经很清晰了，首先新建一个APP，然后连接官方提供的 qwebchannel.js 文件（这一步在大型项目中与示例可能不同）。 接着进入正题，开启服务器监听端口，这里是端口12345，如果出错（端口被占用，往往是已经有程序开启监听此端口）则发出错误信息。 然后是声明一个QT提供的 客户端遇到的问题参考链接]]></content>
+      <categories>
+        <category>web</category>
+      </categories>
+      <tags>
+        <tag>QT</tag>
+        <tag>C++</tag>
+        <tag>JS</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Visual Studio Code 配置 Latex环境]]></title>
     <url>%2F2018-11-30%2FlatexVScode%2F</url>
     <content type="text"><![CDATA[latexmk: The script engine could not be found.latexmk: Data: scriptEngine=”perl.exe”, scriptName=”latexmk” 遇到这个问题后，我首先使用latex自带IDE编译文件（检查是否是MiKTeX问题）。 发现缺少许多必要的文件并且自动下载经常失败。 搜索相关问题后，自查：（在终端输入） latexmk --version 显示： Latexmk, John Collins, 25 October 2018. Version 4.61 没有问题，接下来打开MiKTeX-console： MiKTeX-console 检查更新。这时候发现存在无法连接服务器的问题，打开连接选项，选择国内的站点测试，找到一个可以连接的镜像站点。将所有需要更新的组件进行更新。 这时候，我已经可以通过使用MiKTeX自带的IDE进行latex文件的编译和PDF显示了，下一步解决文章开头的VS Code下latex编译的问题。 latexmk: The script engine could not be found.latexmk: Data: scriptEngine=”perl.exe”, scriptName=”latexmk” 这个问题其实也很简单，没有安装perl。打开下面的网址下载安装即可。 perl 安装完成后重启VS Code，即可成功编译显示PDF文件，如下图： 参考链接： https://github.com/James-Yu/LaTeX-Workshop/issues/192 https://tex.stackexchange.com/questions/461954/latexmk-error-on-vs-code]]></content>
@@ -33,9 +46,9 @@
       </categories>
       <tags>
         <tag>web</tag>
+        <tag>bug</tag>
         <tag>WordPress</tag>
         <tag>Nginx</tag>
-        <tag>bug</tag>
       </tags>
   </entry>
   <entry>
@@ -46,8 +59,8 @@
         <category>web</category>
       </categories>
       <tags>
-        <tag>建站</tag>
         <tag>web</tag>
+        <tag>建站</tag>
         <tag>WordPress</tag>
         <tag>Nginx</tag>
         <tag>Apache</tag>
