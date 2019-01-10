@@ -119,24 +119,24 @@
 <meta name="keywords" content="web,bug">
 <meta property="og:type" content="article">
 <meta property="og:title" content="由busuanzi引起的博客访问变慢">
-<meta property="og:url" content="http://blog.dongjinguo.com/2018-10-09/busuanzi/index.html">
+<meta property="og:url" content="http://blog.djinguo.com/2018-10-09/busuanzi/index.html">
 <meta property="og:site_name" content="Study and Share">
 <meta property="og:description" content="最近博客加载一直很慢，并且底部访问量统计加载不出来，是什么原因呢？记一个学习HTTP协议时偶然发现并解决的问题。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://blog.dongjinguo.com/images/busuanzi.png">
-<meta property="og:image" content="http://blog.dongjinguo.com/images/busuan.png">
+<meta property="og:image" content="http://blog.djinguo.com/images/busuanzi.png">
+<meta property="og:image" content="http://blog.djinguo.com/images/busuan.png">
 <meta property="og:updated_time" content="2018-10-08T15:09:16.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="由busuanzi引起的博客访问变慢">
 <meta name="twitter:description" content="最近博客加载一直很慢，并且底部访问量统计加载不出来，是什么原因呢？记一个学习HTTP协议时偶然发现并解决的问题。">
-<meta name="twitter:image" content="http://blog.dongjinguo.com/images/busuanzi.png">
+<meta name="twitter:image" content="http://blog.djinguo.com/images/busuanzi.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://blog.dongjinguo.com/2018-10-09/busuanzi/"/>
+  <link rel="canonical" href="http://blog.djinguo.com/2018-10-09/busuanzi/"/>
 
 
 
@@ -362,7 +362,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.dongjinguo.com/2018-10-09/busuanzi/">
+    <link itemprop="mainEntityOfPage" href="http://blog.djinguo.com/2018-10-09/busuanzi/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jinguo Dong (董金国)">
@@ -501,7 +501,7 @@
 <p>题外话：最近在模联开发团队做一个国内高校模联团队交流平台的网站，正好学习+实战web开发。</p>
 </blockquote>
 <p><br></p>
-<h1 id="1-学习HTTP调查blog问题原因"><a href="#1-学习HTTP调查blog问题原因" class="headerlink" title="1. 学习HTTP调查blog问题原因"></a>1. 学习HTTP调查blog问题原因</h1><p>使用Chrome浏览器，按F12打开开发者工具，选择Network选项（显示浏览器和服务器的通信），打开我的博客 <a href="http://blog.dongjinguo.com/">http://blog.dongjinguo.com/</a> ，这时候发现主要界面加载出来后但整个网站仍然一直处于刷新状态，将Network中的记录按照时间从长到短排序，发现第一个状态是404，链接的地址是 <a href="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" target="_blank" rel="noopener">https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js</a> ，将其打开。</p>
+<h1 id="1-学习HTTP调查blog问题原因"><a href="#1-学习HTTP调查blog问题原因" class="headerlink" title="1. 学习HTTP调查blog问题原因"></a>1. 学习HTTP调查blog问题原因</h1><p>使用Chrome浏览器，按F12打开开发者工具，选择Network选项（显示浏览器和服务器的通信），打开我的博客 <a href="http://blog.dongjinguo.com/" target="_blank" rel="noopener">http://blog.dongjinguo.com/</a> ，这时候发现主要界面加载出来后但整个网站仍然一直处于刷新状态，将Network中的记录按照时间从长到短排序，发现第一个状态是404，链接的地址是 <a href="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" target="_blank" rel="noopener">https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js</a> ，将其打开。</p>
 <h1 id="2-发现busuanzi（不蒜子）"><a href="#2-发现busuanzi（不蒜子）" class="headerlink" title="2. 发现busuanzi（不蒜子）"></a>2. 发现busuanzi（不蒜子）</h1><p>打开后是如下页面：<br><img src="/images/busuanzi.png" alt="error"></p>
 <p>把这个链接和hexo一起拖去Google一下，发现排第一的就是：“busuanzi统计挂了？”</p>
 <p>busuanzi正好是我的博客用来统计访客数量的工具。</p>
@@ -533,7 +533,7 @@
   <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
   <p><span>文章作者:</span><a href="/" title="访问 Jinguo Dong (董金国) 的个人博客">Jinguo Dong (董金国)</a></p>
   <p><span>最后更新:</span>2018年10月08日 23:10:16</p>
-  <p><span>原始链接:</span><a href="/2018-10-09/busuanzi/" title="由busuanzi引起的博客访问变慢">http://blog.dongjinguo.com/2018-10-09/busuanzi/</a></p>
+  <p><span>原始链接:</span><a href="/2018-10-09/busuanzi/" title="由busuanzi引起的博客访问变慢">http://blog.djinguo.com/2018-10-09/busuanzi/</a></p>
   <p><span>版权声明:</span>本博客所有文章除特别声明外，均采用 <i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/3.0/" target="_blank" title="Attribution-NonCommercial-ShareAlike 3.0 Unported (CC BY-NC-SA 3.0)"> BY-NC-SA 3.0 许可协议</a>，转载请注明出处！</p>  
 </div>
 
@@ -651,7 +651,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -795,7 +795,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
@@ -836,7 +836,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共5.9k字</span>
+  <span class="post-count">博客全站共8k字</span>
 </div>
         
 

@@ -1,5 +1,5 @@
-http://blog.dongjinguo.com/2018-12-28/qtwithjs/
-http://blog.dongjinguo.com/2018-11-30/latexVScode/
-http://blog.dongjinguo.com/2018-10-09/busuanzi/
-http://blog.dongjinguo.com/2018-09-30/errors/
-http://blog.dongjinguo.com/2018-09-25/WebStation/
+http://blog.djinguo.com/2018-12-28/qtwithjs/
+http://blog.djinguo.com/2018-11-30/latexVScode/
+http://blog.djinguo.com/2018-10-09/busuanzi/
+http://blog.djinguo.com/2018-09-30/errors/
+http://blog.djinguo.com/2018-09-25/WebStation/
