@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.djinguo.com/"/>
-  <updated>2019-01-10T13:15:31.974Z</updated>
+  <updated>2019-01-10T13:25:12.572Z</updated>
   <id>http://blog.djinguo.com/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://blog.djinguo.com/2019-01-10/changehexo/"/>
     <id>http://blog.djinguo.com/2019-01-10/changehexo/</id>
     <published>2019-01-10T12:50:13.000Z</published>
-    <updated>2019-01-10T13:15:31.974Z</updated>
+    <updated>2019-01-10T13:25:12.572Z</updated>
     
-    <content type="html"><![CDATA[<blockquote><p>暑假回国终于把在阿里云买的域名备案成功了，比原先的域名简短些，并且阿里云解析服务器可操作功能更多一些。于是打算换一下整体博客的域名，同时添加备案号。</p></blockquote><a id="more"></a><h1 id="更换域名"><a href="#更换域名" class="headerlink" title="更换域名"></a>更换域名</h1><p>其实不是第一次换域名了，之前有过将 <code>femj007.github.io</code> 换成另外一个域名的经历，但时间长了操作也忘得差不多了，这次正好记录下来。</p><h2 id="修改-config文件信息"><a href="#修改-config文件信息" class="headerlink" title="修改_config文件信息"></a>修改_config文件信息</h2><p>打开<code>hexo目录</code>下的<code>_config.yml</code>文件，找到URL，将其指向域名地址，我的是：</p><p><code>http://blog.djinguo.com</code></p><h2 id="修改CNAME文件"><a href="#修改CNAME文件" class="headerlink" title="修改CNAME文件"></a>修改CNAME文件</h2><p>打开<code>hexo/source</code>目录下的<code>CNAME</code>文件（如果没有请新建，无后缀）</p><p>在其中写入你的域名地址即可。</p><p>我这次改域名就是这边出问题了，检查这边应该是提交给GitHub个人主页链接（也就是在项目setting里面Custom domain的链接）</p><h2 id="不要忘记将域名解析到你的github-io地址"><a href="#不要忘记将域名解析到你的github-io地址" class="headerlink" title="不要忘记将域名解析到你的github.io地址"></a>不要忘记将域名解析到你的github.io地址</h2><p>进入域名供应商提供的解析页面，新增选择CNAME解析（将域名指向另一个域名），地址填入你的GitHub主页地址，我这边是<code>femj007.github.io</code>，表示将我的个人域名（<code>blog.djinguo.com</code>映射到<code>femj007.github.io</code>），提交后稍等一会就可以通过自己的域名访问博客啦~</p><h1 id="添加备案号"><a href="#添加备案号" class="headerlink" title="添加备案号"></a>添加备案号</h1><p>我这里选择的是比较简单的方法添加备案号，没有加图片（其实加图片也很简单）。</p><p>方法如下：</p><p>打开<code>主题</code>目录下<code>\layout\_partials\footer.swig</code>文件。</p><p>在底部加入一行：</p><p><code>&lt;a href=&quot;http://www.miitbeian.gov.cn/&quot;&gt;苏ICP备1901979号&lt;/a&gt;</code></p><p>请把备案号换成自己的备案号。</p><p>大功告成~</p>]]></content>
+    <content type="html"><![CDATA[<blockquote><p>暑假回国终于把在阿里云买的域名备案成功了，比原先的域名简短些，并且阿里云解析服务器可操作功能更多一些。于是打算换一下整体博客的域名，同时添加备案号。</p></blockquote><a id="more"></a><h1 id="更换域名"><a href="#更换域名" class="headerlink" title="更换域名"></a>更换域名</h1><p>其实不是第一次换域名了，之前有过将 <code>femj007.github.io</code> 换成另外一个域名的经历，但时间长了操作也忘得差不多了，这次正好记录下来。</p><h2 id="修改-config文件信息"><a href="#修改-config文件信息" class="headerlink" title="修改_config文件信息"></a>修改_config文件信息</h2><p>打开<code>hexo目录</code>下的<code>_config.yml</code>文件，找到URL，将其指向域名地址，我的是：</p><p><code>http://blog.djinguo.com</code></p><h2 id="修改CNAME文件"><a href="#修改CNAME文件" class="headerlink" title="修改CNAME文件"></a>修改CNAME文件</h2><p>打开<code>hexo/source</code>目录下的<code>CNAME</code>文件（如果没有请新建，无后缀）</p><p>在其中写入你的域名地址即可。</p><p>我这次改域名就是这边出问题了（没有修改），测试几次后发现这边是提交给GitHub的个人主页链接（也就是在项目setting里面Custom domain的链接），也可以手动修改下面图片中地址，但可能每次deploy后都会更改。</p><p><img src="/images/page_domain.png" alt="page"></p><h2 id="不要忘记将域名解析到你的github-io地址"><a href="#不要忘记将域名解析到你的github-io地址" class="headerlink" title="不要忘记将域名解析到你的github.io地址"></a>不要忘记将域名解析到你的github.io地址</h2><p>进入域名供应商提供的解析页面，新增选择CNAME解析（将域名指向另一个域名），地址填入你的GitHub主页地址，我这边是<code>femj007.github.io</code>，表示将我的个人域名（<code>blog.djinguo.com</code>映射到<code>femj007.github.io</code>），提交后稍等一会就可以通过自己的域名访问博客啦~</p><h1 id="添加备案号"><a href="#添加备案号" class="headerlink" title="添加备案号"></a>添加备案号</h1><p>我这里选择的是比较简单的方法添加备案号，没有加图片（其实加图片也很简单）。</p><p>方法如下：</p><p>打开<code>主题</code>目录下<code>\layout\_partials\footer.swig</code>文件。</p><p>在底部加入一行：</p><p><code>&lt;a href=&quot;http://www.miitbeian.gov.cn/&quot;&gt;苏ICP备1901979号&lt;/a&gt;</code></p><p>请把备案号换成自己的备案号。</p><p>大功告成~</p>]]></content>
     
     <summary type="html">
     
@@ -143,11 +143,11 @@
     
       <category term="web" scheme="http://blog.djinguo.com/tags/web/"/>
     
-      <category term="bug" scheme="http://blog.djinguo.com/tags/bug/"/>
-    
       <category term="WordPress" scheme="http://blog.djinguo.com/tags/WordPress/"/>
     
       <category term="Nginx" scheme="http://blog.djinguo.com/tags/Nginx/"/>
+    
+      <category term="bug" scheme="http://blog.djinguo.com/tags/bug/"/>
     
   </entry>
   
@@ -171,9 +171,9 @@
       <category term="web" scheme="http://blog.djinguo.com/categories/web/"/>
     
     
-      <category term="web" scheme="http://blog.djinguo.com/tags/web/"/>
-    
       <category term="建站" scheme="http://blog.djinguo.com/tags/%E5%BB%BA%E7%AB%99/"/>
+    
+      <category term="web" scheme="http://blog.djinguo.com/tags/web/"/>
     
       <category term="WordPress" scheme="http://blog.djinguo.com/tags/WordPress/"/>
     

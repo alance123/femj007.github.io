@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[Hexo + GitHub 博客更换域名及添加备案号小记]]></title>
     <url>%2F2019-01-10%2Fchangehexo%2F</url>
-    <content type="text"><![CDATA[暑假回国终于把在阿里云买的域名备案成功了，比原先的域名简短些，并且阿里云解析服务器可操作功能更多一些。于是打算换一下整体博客的域名，同时添加备案号。 更换域名其实不是第一次换域名了，之前有过将 femj007.github.io 换成另外一个域名的经历，但时间长了操作也忘得差不多了，这次正好记录下来。 修改_config文件信息打开hexo目录下的_config.yml文件，找到URL，将其指向域名地址，我的是： http://blog.djinguo.com 修改CNAME文件打开hexo/source目录下的CNAME文件（如果没有请新建，无后缀） 在其中写入你的域名地址即可。 我这次改域名就是这边出问题了，检查这边应该是提交给GitHub个人主页链接（也就是在项目setting里面Custom domain的链接） 不要忘记将域名解析到你的github.io地址进入域名供应商提供的解析页面，新增选择CNAME解析（将域名指向另一个域名），地址填入你的GitHub主页地址，我这边是femj007.github.io，表示将我的个人域名（blog.djinguo.com映射到femj007.github.io），提交后稍等一会就可以通过自己的域名访问博客啦~ 添加备案号我这里选择的是比较简单的方法添加备案号，没有加图片（其实加图片也很简单）。 方法如下： 打开主题目录下\layout\_partials\footer.swig文件。 在底部加入一行： &lt;a href=&quot;http://www.miitbeian.gov.cn/&quot;&gt;苏ICP备1901979号&lt;/a&gt; 请把备案号换成自己的备案号。 大功告成~]]></content>
+    <content type="text"><![CDATA[暑假回国终于把在阿里云买的域名备案成功了，比原先的域名简短些，并且阿里云解析服务器可操作功能更多一些。于是打算换一下整体博客的域名，同时添加备案号。 更换域名其实不是第一次换域名了，之前有过将 femj007.github.io 换成另外一个域名的经历，但时间长了操作也忘得差不多了，这次正好记录下来。 修改_config文件信息打开hexo目录下的_config.yml文件，找到URL，将其指向域名地址，我的是： http://blog.djinguo.com 修改CNAME文件打开hexo/source目录下的CNAME文件（如果没有请新建，无后缀） 在其中写入你的域名地址即可。 我这次改域名就是这边出问题了（没有修改），测试几次后发现这边是提交给GitHub的个人主页链接（也就是在项目setting里面Custom domain的链接），也可以手动修改下面图片中地址，但可能每次deploy后都会更改。 不要忘记将域名解析到你的github.io地址进入域名供应商提供的解析页面，新增选择CNAME解析（将域名指向另一个域名），地址填入你的GitHub主页地址，我这边是femj007.github.io，表示将我的个人域名（blog.djinguo.com映射到femj007.github.io），提交后稍等一会就可以通过自己的域名访问博客啦~ 添加备案号我这里选择的是比较简单的方法添加备案号，没有加图片（其实加图片也很简单）。 方法如下： 打开主题目录下\layout\_partials\footer.swig文件。 在底部加入一行： &lt;a href=&quot;http://www.miitbeian.gov.cn/&quot;&gt;苏ICP备1901979号&lt;/a&gt; 请把备案号换成自己的备案号。 大功告成~]]></content>
       <categories>
         <category>web</category>
       </categories>
@@ -58,9 +58,9 @@
       </categories>
       <tags>
         <tag>web</tag>
-        <tag>bug</tag>
         <tag>WordPress</tag>
         <tag>Nginx</tag>
+        <tag>bug</tag>
       </tags>
   </entry>
   <entry>
@@ -71,8 +71,8 @@
         <category>web</category>
       </categories>
       <tags>
-        <tag>web</tag>
         <tag>建站</tag>
+        <tag>web</tag>
         <tag>WordPress</tag>
         <tag>Nginx</tag>
         <tag>Apache</tag>
