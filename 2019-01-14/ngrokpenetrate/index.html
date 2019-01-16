@@ -115,20 +115,20 @@
   if(host == "femj007.coding.me")
       window.location.href = window.location.href.replace(/yuan-ji.coding.me/,"femj007.github.io")
 </script>
-  <meta name="description" content="在外的两大烦恼，一为无法免费下载论文，二为在国外受版权限制音乐都不能很愉快地欣赏，明明购买了音乐会员却一片灰色，即使使用阿里云服务器可以点亮却受限于少的可怜的1m带宽————连听首歌都会卡顿。但因为IPv4地址数量有限，我们平时使用的宽带不会分配唯一的公网IP，即：正常情况下在互联网上无法定位我们，要建立通讯需要采取一些特殊的方法。本篇博客采用ngrok实现穿透内网，使用shadowsocks搭">
+  <meta name="description" content="在外的两大烦恼，一为无法免费下载论文，二为在国外受版权限制音乐都不能很愉快地欣赏，明明购买了音乐会员却一片灰色，即使使用阿里云服务器可以点亮却受限于少的可怜的1m带宽——连听首歌都会卡顿。但因为IPv4地址数量有限，我们平时使用的宽带不会分配唯一的公网IP，即：正常情况下在互联网上无法定位我们，要建立通讯需要采取一些特殊的方法。本篇博客采用ngrok实现穿透内网，使用shadowsocks搭建梯">
 <meta name="keywords" content="ngrok,shadowsocks,内网穿透,ssh">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ngrok实现内网穿透并设置开机启动，可以通过ssh远程控制主机，校外也能看论文。">
 <meta property="og:url" content="http://blog.djinguo.com/2019-01-14/ngrokpenetrate/index.html">
 <meta property="og:site_name" content="Study and Share">
-<meta property="og:description" content="在外的两大烦恼，一为无法免费下载论文，二为在国外受版权限制音乐都不能很愉快地欣赏，明明购买了音乐会员却一片灰色，即使使用阿里云服务器可以点亮却受限于少的可怜的1m带宽————连听首歌都会卡顿。但因为IPv4地址数量有限，我们平时使用的宽带不会分配唯一的公网IP，即：正常情况下在互联网上无法定位我们，要建立通讯需要采取一些特殊的方法。本篇博客采用ngrok实现穿透内网，使用shadowsocks搭">
+<meta property="og:description" content="在外的两大烦恼，一为无法免费下载论文，二为在国外受版权限制音乐都不能很愉快地欣赏，明明购买了音乐会员却一片灰色，即使使用阿里云服务器可以点亮却受限于少的可怜的1m带宽——连听首歌都会卡顿。但因为IPv4地址数量有限，我们平时使用的宽带不会分配唯一的公网IP，即：正常情况下在互联网上无法定位我们，要建立通讯需要采取一些特殊的方法。本篇博客采用ngrok实现穿透内网，使用shadowsocks搭建梯">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://blog.djinguo.com/images/ngrok.png">
 <meta property="og:image" content="http://blog.djinguo.com/images/ngrok_start.png">
-<meta property="og:updated_time" content="2019-01-15T15:23:02.284Z">
+<meta property="og:updated_time" content="2019-01-16T05:50:57.103Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ngrok实现内网穿透并设置开机启动，可以通过ssh远程控制主机，校外也能看论文。">
-<meta name="twitter:description" content="在外的两大烦恼，一为无法免费下载论文，二为在国外受版权限制音乐都不能很愉快地欣赏，明明购买了音乐会员却一片灰色，即使使用阿里云服务器可以点亮却受限于少的可怜的1m带宽————连听首歌都会卡顿。但因为IPv4地址数量有限，我们平时使用的宽带不会分配唯一的公网IP，即：正常情况下在互联网上无法定位我们，要建立通讯需要采取一些特殊的方法。本篇博客采用ngrok实现穿透内网，使用shadowsocks搭">
+<meta name="twitter:description" content="在外的两大烦恼，一为无法免费下载论文，二为在国外受版权限制音乐都不能很愉快地欣赏，明明购买了音乐会员却一片灰色，即使使用阿里云服务器可以点亮却受限于少的可怜的1m带宽——连听首歌都会卡顿。但因为IPv4地址数量有限，我们平时使用的宽带不会分配唯一的公网IP，即：正常情况下在互联网上无法定位我们，要建立通讯需要采取一些特殊的方法。本篇博客采用ngrok实现穿透内网，使用shadowsocks搭建梯">
 <meta name="twitter:image" content="http://blog.djinguo.com/images/ngrok.png">
 
 
@@ -421,7 +421,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-01-15 23:23:02" itemprop="dateModified" datetime="2019-01-15T23:23:02+08:00">2019-01-15</time>
+                <time title="修改时间：2019-01-16 13:50:57" itemprop="dateModified" datetime="2019-01-16T13:50:57+08:00">2019-01-16</time>
               
             
           </span>
@@ -494,7 +494,7 @@
 
       
         <blockquote>
-<p>在外的两大烦恼，一为无法免费下载论文，二为在国外受版权限制音乐都不能很愉快地欣赏，明明购买了音乐会员却一片灰色，即使使用阿里云服务器可以点亮却受限于少的可怜的1m带宽————连听首歌都会卡顿。<br>但因为IPv4地址数量有限，我们平时使用的宽带不会分配唯一的公网IP，即：正常情况下在互联网上无法定位我们，要建立通讯需要采取一些特殊的方法。<br>本篇博客采用ngrok实现穿透内网，使用shadowsocks搭建梯子建立连接。<br>注意：本博客仅供技术分享，请勿用此进行违法行为，一切后果概不负责！</p>
+<p>在外的两大烦恼，一为无法免费下载论文，二为在国外受版权限制音乐都不能很愉快地欣赏，明明购买了音乐会员却一片灰色，即使使用阿里云服务器可以点亮却受限于少的可怜的1m带宽——连听首歌都会卡顿。<br>但因为IPv4地址数量有限，我们平时使用的宽带不会分配唯一的公网IP，即：正常情况下在互联网上无法定位我们，要建立通讯需要采取一些特殊的方法。<br>本篇博客采用ngrok实现穿透内网，使用shadowsocks搭建梯子建立连接。<br>注意：本博客仅供技术分享，请勿用此进行违法行为，一切后果概不负责！</p>
 </blockquote>
 <p><img src="/images/ngrok.png" alt="ngrok原理"><br><a id="more"></a></p>
 <h1 id="技术概括"><a href="#技术概括" class="headerlink" title="技术概括"></a>技术概括</h1><p>内网穿透，即在茫茫网络中发现你的机器，通过外网也能访问你的本地应用。</p>
@@ -524,7 +524,7 @@
 <p>如果使用xshell连接云主机推荐使用<code>lrzsz</code>进行文件传输：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install lrzsz</span><br></pre></td></tr></table></figure>
 <p>rz是上传文件到云服务器，sz file是下载文件到本地。</p>
-<p>当然你也可以使用其他文件传输软件。</p>
+<p>当然你也可以使用其他软件（如WinSCP）传输文件。</p>
 <h2 id="运行ngrok服务器端"><a href="#运行ngrok服务器端" class="headerlink" title="运行ngrok服务器端"></a>运行ngrok服务器端</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/ngrok/bin/ngrokd -domain="ngrok.example.com" -httpAddr=":6060" -httpsAddr=":6061" -tunnelAddr=":6062"</span><br></pre></td></tr></table></figure>
 <p>注：<code>ngrokd</code>是生成的服务器端程序，如果反应找不到那可能是目录定位问题，可以cd到安装目录打开。</p>
 <p><code>httpAddr</code>以及<code>httpsAddr</code>分别是反向代理<code>http</code>以及<code>https</code>站点的端口。</p>
@@ -537,7 +537,10 @@
 <p>后面是我们的配置，</p>
 <p>ss是 shadowsocks 的配置，将服务器端<code>38383</code>端口转发到本地的<code>4321</code>端口，即如果我们通过 shadowsocks 连接云服务器的<code>38383</code>端口，那么便会通过ngrok映射到内网主机的<code>4321</code>端口。</p>
 <p>ssh是一个加密的网络传输壳协议，通过它我们可以远程连接控制主机。ssh的端口是<code>22</code>，这里将服务器端<code>12345</code>端口映射到客户端的<code>22</code></p>
-<p>这里其实还可以配置其他很多东西，比如HTTP（本地建站解决方案？）、xrdp（Linux图形界面）等，有兴趣的可以自己研究一下~</p>
+<p>这里其实还可以配置其他很多东西，比如HTTP（本地建站解决方案？）、xrdp（Linux图形界面）、mstsc（Windows远程桌面）等，有兴趣的可以自己研究一下~</p>
+<blockquote>
+<p>小tip： 该文件格式不能使用Tab，否则会报错：<br>YAML error: line 1: found character that cannot start any token<br>请将Tab换成空格</p>
+</blockquote>
 <h2 id="运行ngrok客户端"><a href="#运行ngrok客户端" class="headerlink" title="运行ngrok客户端"></a>运行ngrok客户端</h2><p>使用如下命令启动客户端（再次提醒注意定位ngrok文件位置）</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ngrok -log=ngrok.log -config=ngrok.cfg start ssh sh</span><br></pre></td></tr></table></figure>
 <p>运行后应该显示正在连接（connecting），直到绿色的<code>online</code>便是连接成功~</p>
@@ -592,7 +595,7 @@
   <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
   <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
   <p><span>文章作者:</span><a href="/" title="访问 Jinguo Dong (董金国) 的个人博客">Jinguo Dong (董金国)</a></p>
-  <p><span>最后更新:</span>2019年01月15日 23:01:02</p>
+  <p><span>最后更新:</span>2019年01月16日 13:01:57</p>
   <p><span>原始链接:</span><a href="/2019-01-14/ngrokpenetrate/" title="ngrok实现内网穿透并设置开机启动，可以通过ssh远程控制主机，校外也能看论文。">http://blog.djinguo.com/2019-01-14/ngrokpenetrate/</a></p>
   <p><span>版权声明:</span>本博客所有文章除特别声明外，均采用 <i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/3.0/" target="_blank" title="Attribution-NonCommercial-ShareAlike 3.0 Unported (CC BY-NC-SA 3.0)"> BY-NC-SA 3.0 许可协议</a>，转载请注明出处！</p>  
 </div>
