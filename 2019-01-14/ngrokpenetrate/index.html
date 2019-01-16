@@ -125,7 +125,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://blog.djinguo.com/images/ngrok.png">
 <meta property="og:image" content="http://blog.djinguo.com/images/ngrok_start.png">
-<meta property="og:updated_time" content="2019-01-16T05:50:57.103Z">
+<meta property="og:updated_time" content="2019-01-16T13:28:33.449Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ngrok实现内网穿透并设置开机启动，可以通过ssh远程控制主机，校外也能看论文。">
 <meta name="twitter:description" content="在外的两大烦恼，一为无法免费下载论文，二为在国外受版权限制音乐都不能很愉快地欣赏，明明购买了音乐会员却一片灰色，即使使用阿里云服务器可以点亮却受限于少的可怜的1m带宽——连听首歌都会卡顿。但因为IPv4地址数量有限，我们平时使用的宽带不会分配唯一的公网IP，即：正常情况下在互联网上无法定位我们，要建立通讯需要采取一些特殊的方法。本篇博客采用ngrok实现穿透内网，使用shadowsocks搭建梯">
@@ -421,7 +421,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-01-16 13:50:57" itemprop="dateModified" datetime="2019-01-16T13:50:57+08:00">2019-01-16</time>
+                <time title="修改时间：2019-01-16 21:28:33" itemprop="dateModified" datetime="2019-01-16T21:28:33+08:00">2019-01-16</time>
               
             
           </span>
@@ -542,7 +542,7 @@
 <p>小tip： 该文件格式不能使用Tab，否则会报错：<br>YAML error: line 1: found character that cannot start any token<br>请将Tab换成空格</p>
 </blockquote>
 <h2 id="运行ngrok客户端"><a href="#运行ngrok客户端" class="headerlink" title="运行ngrok客户端"></a>运行ngrok客户端</h2><p>使用如下命令启动客户端（再次提醒注意定位ngrok文件位置）</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ngrok -log=ngrok.log -config=ngrok.cfg start ssh sh</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ngrok -log=ngrok.log -config=ngrok.cfg start ssh ss</span><br></pre></td></tr></table></figure>
 <p>运行后应该显示正在连接（connecting），直到绿色的<code>online</code>便是连接成功~</p>
 <p>如果报错请先去掉最后的sh运行，或者先安装shadowsocks再运行。</p>
 <h1 id="安装使用shadowsocks（如果只需要内网穿透请忽略这一段）"><a href="#安装使用shadowsocks（如果只需要内网穿透请忽略这一段）" class="headerlink" title="安装使用shadowsocks（如果只需要内网穿透请忽略这一段）"></a>安装使用shadowsocks（如果只需要内网穿透请忽略这一段）</h1><p>为了防止大家概念混淆前面一直没有讲shadowsocks（对，我一开始看别人的教程就晕过qaq）</p>
@@ -595,7 +595,7 @@
   <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
   <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
   <p><span>文章作者:</span><a href="/" title="访问 Jinguo Dong (董金国) 的个人博客">Jinguo Dong (董金国)</a></p>
-  <p><span>最后更新:</span>2019年01月16日 13:01:57</p>
+  <p><span>最后更新:</span>2019年01月16日 21:01:33</p>
   <p><span>原始链接:</span><a href="/2019-01-14/ngrokpenetrate/" title="ngrok实现内网穿透并设置开机启动，可以通过ssh远程控制主机，校外也能看论文。">http://blog.djinguo.com/2019-01-14/ngrokpenetrate/</a></p>
   <p><span>版权声明:</span>本博客所有文章除特别声明外，均采用 <i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/3.0/" target="_blank" title="Attribution-NonCommercial-ShareAlike 3.0 Unported (CC BY-NC-SA 3.0)"> BY-NC-SA 3.0 许可协议</a>，转载请注明出处！</p>  
 </div>
