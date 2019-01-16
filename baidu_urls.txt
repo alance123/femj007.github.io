@@ -1,5 +1,5 @@
-femj007.coding.me/2019-01-14/ngrokpenetrate/
-femj007.coding.me/2019-01-10/changehexo/
-femj007.coding.me/2018-12-28/qtwithjs/
-femj007.coding.me/2018-11-30/latexVScode/
-femj007.coding.me/2018-10-09/busuanzi/
+http://blog.djinguo.com/2019-01-14/ngrokpenetrate/
+http://blog.djinguo.com/2019-01-10/changehexo/
+http://blog.djinguo.com/2018-12-28/qtwithjs/
+http://blog.djinguo.com/2018-11-30/latexVScode/
+http://blog.djinguo.com/2018-10-09/busuanzi/

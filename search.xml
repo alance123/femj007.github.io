@@ -72,9 +72,9 @@
       </categories>
       <tags>
         <tag>web</tag>
-        <tag>bug</tag>
         <tag>WordPress</tag>
         <tag>Nginx</tag>
+        <tag>bug</tag>
       </tags>
   </entry>
   <entry>
@@ -86,9 +86,9 @@
       </categories>
       <tags>
         <tag>web</tag>
-        <tag>建站</tag>
         <tag>WordPress</tag>
         <tag>Nginx</tag>
+        <tag>建站</tag>
         <tag>Apache</tag>
         <tag>PHP</tag>
         <tag>MySql</tag>
