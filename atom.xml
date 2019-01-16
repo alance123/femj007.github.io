@@ -5,9 +5,9 @@
   <subtitle>Jinguo&#39;s blog</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://blog.djinguo.com/"/>
+  <link href="femj007.coding.me/"/>
   <updated>2019-01-16T05:50:57.103Z</updated>
-  <id>http://blog.djinguo.com/</id>
+  <id>femj007.coding.me/</id>
   
   <author>
     <name>Jinguo Dong (董金国)</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>ngrok实现内网穿透并设置开机启动，可以通过ssh远程控制主机，校外也能看论文。</title>
-    <link href="http://blog.djinguo.com/2019-01-14/ngrokpenetrate/"/>
-    <id>http://blog.djinguo.com/2019-01-14/ngrokpenetrate/</id>
+    <link href="femj007.coding.me/2019-01-14/ngrokpenetrate/"/>
+    <id>femj007.coding.me/2019-01-14/ngrokpenetrate/</id>
     <published>2019-01-14T13:28:12.000Z</published>
     <updated>2019-01-16T05:50:57.103Z</updated>
     
@@ -34,23 +34,23 @@
     
     </summary>
     
-      <category term="web" scheme="http://blog.djinguo.com/categories/web/"/>
+      <category term="web" scheme="femj007.coding.me/categories/web/"/>
     
     
-      <category term="ngrok" scheme="http://blog.djinguo.com/tags/ngrok/"/>
+      <category term="ngrok" scheme="femj007.coding.me/tags/ngrok/"/>
     
-      <category term="shadowsocks" scheme="http://blog.djinguo.com/tags/shadowsocks/"/>
+      <category term="shadowsocks" scheme="femj007.coding.me/tags/shadowsocks/"/>
     
-      <category term="内网穿透" scheme="http://blog.djinguo.com/tags/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/"/>
+      <category term="内网穿透" scheme="femj007.coding.me/tags/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/"/>
     
-      <category term="ssh" scheme="http://blog.djinguo.com/tags/ssh/"/>
+      <category term="ssh" scheme="femj007.coding.me/tags/ssh/"/>
     
   </entry>
   
   <entry>
     <title>Hexo + GitHub 博客更换域名及添加备案号小记</title>
-    <link href="http://blog.djinguo.com/2019-01-10/changehexo/"/>
-    <id>http://blog.djinguo.com/2019-01-10/changehexo/</id>
+    <link href="femj007.coding.me/2019-01-10/changehexo/"/>
+    <id>femj007.coding.me/2019-01-10/changehexo/</id>
     <published>2019-01-10T12:50:13.000Z</published>
     <updated>2019-01-10T13:25:12.572Z</updated>
     
@@ -64,17 +64,17 @@
     
     </summary>
     
-      <category term="web" scheme="http://blog.djinguo.com/categories/web/"/>
+      <category term="web" scheme="femj007.coding.me/categories/web/"/>
     
     
-      <category term="web" scheme="http://blog.djinguo.com/tags/web/"/>
+      <category term="web" scheme="femj007.coding.me/tags/web/"/>
     
   </entry>
   
   <entry>
     <title>QT5.12 C++与前端JS/HTML实现通信交互</title>
-    <link href="http://blog.djinguo.com/2018-12-28/qtwithjs/"/>
-    <id>http://blog.djinguo.com/2018-12-28/qtwithjs/</id>
+    <link href="femj007.coding.me/2018-12-28/qtwithjs/"/>
+    <id>femj007.coding.me/2018-12-28/qtwithjs/</id>
     <published>2018-12-28T11:28:24.000Z</published>
     <updated>2018-12-28T13:39:21.544Z</updated>
     
@@ -87,23 +87,23 @@
     
     </summary>
     
-      <category term="C++" scheme="http://blog.djinguo.com/categories/C/"/>
+      <category term="C++" scheme="femj007.coding.me/categories/C/"/>
     
     
-      <category term="bug" scheme="http://blog.djinguo.com/tags/bug/"/>
+      <category term="bug" scheme="femj007.coding.me/tags/bug/"/>
     
-      <category term="QT" scheme="http://blog.djinguo.com/tags/QT/"/>
+      <category term="QT" scheme="femj007.coding.me/tags/QT/"/>
     
-      <category term="C++" scheme="http://blog.djinguo.com/tags/C/"/>
+      <category term="C++" scheme="femj007.coding.me/tags/C/"/>
     
-      <category term="JavaScript" scheme="http://blog.djinguo.com/tags/JavaScript/"/>
+      <category term="JavaScript" scheme="femj007.coding.me/tags/JavaScript/"/>
     
   </entry>
   
   <entry>
     <title>Visual Studio Code 配置 Latex环境</title>
-    <link href="http://blog.djinguo.com/2018-11-30/latexVScode/"/>
-    <id>http://blog.djinguo.com/2018-11-30/latexVScode/</id>
+    <link href="femj007.coding.me/2018-11-30/latexVScode/"/>
+    <id>femj007.coding.me/2018-11-30/latexVScode/</id>
     <published>2018-11-30T07:19:33.000Z</published>
     <updated>2018-11-30T09:55:52.000Z</updated>
     
@@ -117,19 +117,19 @@
     
     </summary>
     
-      <category term="latex" scheme="http://blog.djinguo.com/categories/latex/"/>
+      <category term="latex" scheme="femj007.coding.me/categories/latex/"/>
     
     
-      <category term="bug" scheme="http://blog.djinguo.com/tags/bug/"/>
+      <category term="bug" scheme="femj007.coding.me/tags/bug/"/>
     
-      <category term="latex" scheme="http://blog.djinguo.com/tags/latex/"/>
+      <category term="latex" scheme="femj007.coding.me/tags/latex/"/>
     
   </entry>
   
   <entry>
     <title>由busuanzi引起的博客访问变慢</title>
-    <link href="http://blog.djinguo.com/2018-10-09/busuanzi/"/>
-    <id>http://blog.djinguo.com/2018-10-09/busuanzi/</id>
+    <link href="femj007.coding.me/2018-10-09/busuanzi/"/>
+    <id>femj007.coding.me/2018-10-09/busuanzi/</id>
     <published>2018-10-08T17:33:33.000Z</published>
     <updated>2018-10-08T15:09:16.000Z</updated>
     
@@ -143,19 +143,19 @@
     
     </summary>
     
-      <category term="web" scheme="http://blog.djinguo.com/categories/web/"/>
+      <category term="web" scheme="femj007.coding.me/categories/web/"/>
     
     
-      <category term="web" scheme="http://blog.djinguo.com/tags/web/"/>
+      <category term="web" scheme="femj007.coding.me/tags/web/"/>
     
-      <category term="bug" scheme="http://blog.djinguo.com/tags/bug/"/>
+      <category term="bug" scheme="femj007.coding.me/tags/bug/"/>
     
   </entry>
   
   <entry>
     <title>记录web开发中遇到的问题及解决（持续更新）</title>
-    <link href="http://blog.djinguo.com/2018-09-30/errors/"/>
-    <id>http://blog.djinguo.com/2018-09-30/errors/</id>
+    <link href="femj007.coding.me/2018-09-30/errors/"/>
+    <id>femj007.coding.me/2018-09-30/errors/</id>
     <published>2018-09-29T16:54:06.000Z</published>
     <updated>2018-10-08T14:33:26.000Z</updated>
     
@@ -169,23 +169,23 @@
     
     </summary>
     
-      <category term="web" scheme="http://blog.djinguo.com/categories/web/"/>
+      <category term="web" scheme="femj007.coding.me/categories/web/"/>
     
     
-      <category term="web" scheme="http://blog.djinguo.com/tags/web/"/>
+      <category term="web" scheme="femj007.coding.me/tags/web/"/>
     
-      <category term="bug" scheme="http://blog.djinguo.com/tags/bug/"/>
+      <category term="bug" scheme="femj007.coding.me/tags/bug/"/>
     
-      <category term="WordPress" scheme="http://blog.djinguo.com/tags/WordPress/"/>
+      <category term="WordPress" scheme="femj007.coding.me/tags/WordPress/"/>
     
-      <category term="Nginx" scheme="http://blog.djinguo.com/tags/Nginx/"/>
+      <category term="Nginx" scheme="femj007.coding.me/tags/Nginx/"/>
     
   </entry>
   
   <entry>
     <title>快速建站经历</title>
-    <link href="http://blog.djinguo.com/2018-09-25/WebStation/"/>
-    <id>http://blog.djinguo.com/2018-09-25/WebStation/</id>
+    <link href="femj007.coding.me/2018-09-25/WebStation/"/>
+    <id>femj007.coding.me/2018-09-25/WebStation/</id>
     <published>2018-09-24T16:16:47.000Z</published>
     <updated>2018-09-30T11:58:28.000Z</updated>
     
@@ -199,29 +199,29 @@
     
     </summary>
     
-      <category term="web" scheme="http://blog.djinguo.com/categories/web/"/>
+      <category term="web" scheme="femj007.coding.me/categories/web/"/>
     
     
-      <category term="web" scheme="http://blog.djinguo.com/tags/web/"/>
+      <category term="web" scheme="femj007.coding.me/tags/web/"/>
     
-      <category term="WordPress" scheme="http://blog.djinguo.com/tags/WordPress/"/>
+      <category term="建站" scheme="femj007.coding.me/tags/%E5%BB%BA%E7%AB%99/"/>
     
-      <category term="Nginx" scheme="http://blog.djinguo.com/tags/Nginx/"/>
+      <category term="WordPress" scheme="femj007.coding.me/tags/WordPress/"/>
     
-      <category term="建站" scheme="http://blog.djinguo.com/tags/%E5%BB%BA%E7%AB%99/"/>
+      <category term="Nginx" scheme="femj007.coding.me/tags/Nginx/"/>
     
-      <category term="Apache" scheme="http://blog.djinguo.com/tags/Apache/"/>
+      <category term="Apache" scheme="femj007.coding.me/tags/Apache/"/>
     
-      <category term="PHP" scheme="http://blog.djinguo.com/tags/PHP/"/>
+      <category term="PHP" scheme="femj007.coding.me/tags/PHP/"/>
     
-      <category term="MySql" scheme="http://blog.djinguo.com/tags/MySql/"/>
+      <category term="MySql" scheme="femj007.coding.me/tags/MySql/"/>
     
   </entry>
   
   <entry>
     <title>QQ机器人搭建教程</title>
-    <link href="http://blog.djinguo.com/2018-09-23/qqbot/"/>
-    <id>http://blog.djinguo.com/2018-09-23/qqbot/</id>
+    <link href="femj007.coding.me/2018-09-23/qqbot/"/>
+    <id>femj007.coding.me/2018-09-23/qqbot/</id>
     <published>2018-09-22T16:11:18.000Z</published>
     <updated>2018-12-27T02:56:33.677Z</updated>
     
@@ -250,14 +250,14 @@
     
     </summary>
     
-      <category term="Python" scheme="http://blog.djinguo.com/categories/Python/"/>
+      <category term="Python" scheme="femj007.coding.me/categories/Python/"/>
     
     
-      <category term="qqbot" scheme="http://blog.djinguo.com/tags/qqbot/"/>
+      <category term="qqbot" scheme="femj007.coding.me/tags/qqbot/"/>
     
-      <category term="Python" scheme="http://blog.djinguo.com/tags/Python/"/>
+      <category term="Python" scheme="femj007.coding.me/tags/Python/"/>
     
-      <category term="语义分析" scheme="http://blog.djinguo.com/tags/%E8%AF%AD%E4%B9%89%E5%88%86%E6%9E%90/"/>
+      <category term="语义分析" scheme="femj007.coding.me/tags/%E8%AF%AD%E4%B9%89%E5%88%86%E6%9E%90/"/>
     
   </entry>
   
