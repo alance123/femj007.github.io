@@ -118,14 +118,14 @@
   <meta name="description" content="前几天给公司新装了一台双路2080Ti主机作为我们计算的服务器【双路RTX 2080Ti】机器学习工作站配置清单及拆箱装机（多图，初创公司福利，程序猿的最爱） - 摩金的文章 - 知乎）因为使用的是现在最新的稳定版Ubuntu Server 18.04，发现以前开机自启的方法失效了，Ubuntu 18 相比以往的几个版本改动较大，不再使用initd管理系统，而是使用systemd，要像以前使用r">
 <meta name="keywords" content="bash,ubuntu,OS,svn">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ubuntu 18.04 server 开机自动启动脚本 svn ngrok 自动启动 rc.local">
+<meta property="og:title" content="Ubuntu Server 18.04.1 LTS 开机自动启动脚本 SVN Ngrok 自动启动 rc.local">
 <meta property="og:url" content="http://blog.djinguo.com/2019-01-30/ubuntu-18-start/index.html">
 <meta property="og:site_name" content="Study and Share">
 <meta property="og:description" content="前几天给公司新装了一台双路2080Ti主机作为我们计算的服务器【双路RTX 2080Ti】机器学习工作站配置清单及拆箱装机（多图，初创公司福利，程序猿的最爱） - 摩金的文章 - 知乎）因为使用的是现在最新的稳定版Ubuntu Server 18.04，发现以前开机自启的方法失效了，Ubuntu 18 相比以往的几个版本改动较大，不再使用initd管理系统，而是使用systemd，要像以前使用r">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-30T05:33:49.583Z">
+<meta property="og:updated_time" content="2019-01-30T05:39:33.952Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ubuntu 18.04 server 开机自动启动脚本 svn ngrok 自动启动 rc.local">
+<meta name="twitter:title" content="Ubuntu Server 18.04.1 LTS 开机自动启动脚本 SVN Ngrok 自动启动 rc.local">
 <meta name="twitter:description" content="前几天给公司新装了一台双路2080Ti主机作为我们计算的服务器【双路RTX 2080Ti】机器学习工作站配置清单及拆箱装机（多图，初创公司福利，程序猿的最爱） - 摩金的文章 - 知乎）因为使用的是现在最新的稳定版Ubuntu Server 18.04，发现以前开机自启的方法失效了，Ubuntu 18 相比以往的几个版本改动较大，不再使用initd管理系统，而是使用systemd，要像以前使用r">
 
 
@@ -143,7 +143,7 @@
   };
 </script>
 
-  <title>ubuntu 18.04 server 开机自动启动脚本 svn ngrok 自动启动 rc.local | Study and Share</title>
+  <title>Ubuntu Server 18.04.1 LTS 开机自动启动脚本 SVN Ngrok 自动启动 rc.local | Study and Share</title>
   
 
 
@@ -376,7 +376,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">ubuntu 18.04 server 开机自动启动脚本 svn ngrok 自动启动 rc.local
+          <h2 class="post-title" itemprop="name headline">Ubuntu Server 18.04.1 LTS 开机自动启动脚本 SVN Ngrok 自动启动 rc.local
               
             
           </h2>
@@ -401,7 +401,7 @@
                 
               
 
-              <time title="创建时间：2019-01-30 13:01:22 / 修改时间：13:33:49" itemprop="dateCreated datePublished" datetime="2019-01-30T13:01:22+08:00">2019-01-30</time>
+              <time title="创建时间：2019-01-30 13:01:22 / 修改时间：13:39:33" itemprop="dateCreated datePublished" datetime="2019-01-30T13:01:22+08:00">2019-01-30</time>
             
 
             
@@ -447,7 +447,7 @@
 
           
           
-             <span id="/2019-01-30/ubuntu-18-start/" class="leancloud_visitors" data-flag-title="ubuntu 18.04 server 开机自动启动脚本 svn ngrok 自动启动 rc.local">
+             <span id="/2019-01-30/ubuntu-18-start/" class="leancloud_visitors" data-flag-title="Ubuntu Server 18.04.1 LTS 开机自动启动脚本 SVN Ngrok 自动启动 rc.local">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -486,7 +486,7 @@
 <h1 id="修改rc-local-service"><a href="#修改rc-local-service" class="headerlink" title="修改rc.local.service"></a>修改rc.local.service</h1><p>systemd 默认读取 /etc/systemd/system 下的文件，该目录下的文件会链接/lib/systemd/system/下的文件。</p>
 <p>执行 <code>ls /lib/systemd/system</code> 你可以看到有很多启动脚本，其中就有我们需要的 rc.local.service</p>
 <blockquote>
-<p>想要深入了解Linux的<code>init</code>进程和<code>systemd</code>可以参考下面的博客：<br><a href="http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html" target="_blank" rel="noopener">Systemd 入门教程</a><br>由于本篇重点在操作实践就不详细研究理论了。</p>
+<p>想要深入了解Linux的<code>init</code>进程和<code>systemd</code>可以参考下面的博客：<br><a href="http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html" target="_blank" rel="noopener">Systemd 入门教程</a></p>
 </blockquote>
 <p>首先修改rc.local.service</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /lib/systemd/system/rc.local.service</span><br></pre></td></tr></table></figure>
@@ -507,7 +507,7 @@
 <p>最后是一个测试输出日志（可以省略），开机后打开/usr/local/text.log就知道有没有成功自启。</p>
 <h1 id="创建软链接"><a href="#创建软链接" class="headerlink" title="创建软链接"></a>创建软链接</h1><p>前面我们说 systemd 默认读取 /etc/systemd/system 下的配置文件, 所以还需要在 /etc/systemd/system 目录下创建软链接</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s /lib/systemd/system/rc.local.service /etc/systemd/system/</span><br></pre></td></tr></table></figure>
-<h1 id="systemctl-启动-问题研究"><a href="#systemctl-启动-问题研究" class="headerlink" title="systemctl 启动 问题研究"></a>systemctl 启动 问题研究</h1><p>之前按照相关教程没有顺利自启，在论坛中找到一个命令使用后成功，可能是将服务告知系统自启的命令。</p>
+<h1 id="systemctl-启动-问题研究解决"><a href="#systemctl-启动-问题研究解决" class="headerlink" title="systemctl 启动 问题研究解决"></a>systemctl 启动 问题研究解决</h1><p>之前按照相关教程没有顺利自启，在论坛中找到一个命令使用后成功，可能是将服务告知系统自启的命令。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable rc-local</span><br></pre></td></tr></table></figure>
 <p>后来又发现：</p>
 <blockquote>
@@ -543,8 +543,8 @@
   <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
   <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
   <p><span>文章作者:</span><a href="/" title="访问 Jinguo Dong (董金国) 的个人博客">Jinguo Dong (董金国)</a></p>
-  <p><span>最后更新:</span>2019年01月30日 13:01:49</p>
-  <p><span>原始链接:</span><a href="/2019-01-30/ubuntu-18-start/" title="ubuntu 18.04 server 开机自动启动脚本 svn ngrok 自动启动 rc.local">http://blog.djinguo.com/2019-01-30/ubuntu-18-start/</a></p>
+  <p><span>最后更新:</span>2019年01月30日 13:01:33</p>
+  <p><span>原始链接:</span><a href="/2019-01-30/ubuntu-18-start/" title="Ubuntu Server 18.04.1 LTS 开机自动启动脚本 SVN Ngrok 自动启动 rc.local">http://blog.djinguo.com/2019-01-30/ubuntu-18-start/</a></p>
   <p><span>版权声明:</span>本博客所有文章除特别声明外，均采用 <i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/3.0/" target="_blank" title="Attribution-NonCommercial-ShareAlike 3.0 Unported (CC BY-NC-SA 3.0)"> BY-NC-SA 3.0 许可协议</a>，转载请注明出处！</p>  
 </div>
 
@@ -808,7 +808,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#修改rc-local-service"><span class="nav-number">1.</span> <span class="nav-text">修改rc.local.service</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建rc-local脚本"><span class="nav-number">2.</span> <span class="nav-text">创建rc.local脚本</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建软链接"><span class="nav-number">3.</span> <span class="nav-text">创建软链接</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#systemctl-启动-问题研究"><span class="nav-number">4.</span> <span class="nav-text">systemctl 启动 问题研究</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接"><span class="nav-number">5.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#修改rc-local-service"><span class="nav-number">1.</span> <span class="nav-text">修改rc.local.service</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建rc-local脚本"><span class="nav-number">2.</span> <span class="nav-text">创建rc.local脚本</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建软链接"><span class="nav-number">3.</span> <span class="nav-text">创建软链接</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#systemctl-启动-问题研究解决"><span class="nav-number">4.</span> <span class="nav-text">systemctl 启动 问题研究解决</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接"><span class="nav-number">5.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
             
 
           </div>
