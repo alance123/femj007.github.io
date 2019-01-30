@@ -1,5 +1,5 @@
+http://blog.djinguo.com/2019-01-30/ubuntu-18-start/
 http://blog.djinguo.com/2019-01-14/ngrokpenetrate/
 http://blog.djinguo.com/2019-01-10/changehexo/
 http://blog.djinguo.com/2018-12-28/qtwithjs/
 http://blog.djinguo.com/2018-11-30/latexVScode/
-http://blog.djinguo.com/2018-10-09/busuanzi/
