@@ -1,0 +1,1568 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.4.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+<script language="javascript">
+  host = window.location.host
+  if(host == "femj007.coding.me")
+      window.location.href = window.location.href.replace(/yuan-ji.coding.me/,"femj007.github.io")
+</script>
+  <meta name="description" content="在外的两大烦恼，一为无法免费下载论文，二为在国外受版权限制音乐都不能很愉快地欣赏，明明购买了音乐会员却一片灰色，即使使用阿里云服务器可以点亮却受限于少的可怜的1m带宽——连听首歌都会卡顿。但因为IPv4地址数量有限，我们平时使用的宽带不会分配唯一的公网IP，即：正常情况下在互联网上无法定位我们，要建立通讯需要采取一些特殊的方法。本篇博客采用ngrok实现穿透内网，使用shadowsocks搭建梯">
+<meta name="keywords" content="ngrok,shadowsocks,内网穿透,ssh">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ngrok实现内网穿透并设置开机启动，可以通过ssh远程控制主机，校外也能看论文。">
+<meta property="og:url" content="http://blog.djinguo.com/2019-01-15/ngrokpenetrate/index.html">
+<meta property="og:site_name" content="Study and Share">
+<meta property="og:description" content="在外的两大烦恼，一为无法免费下载论文，二为在国外受版权限制音乐都不能很愉快地欣赏，明明购买了音乐会员却一片灰色，即使使用阿里云服务器可以点亮却受限于少的可怜的1m带宽——连听首歌都会卡顿。但因为IPv4地址数量有限，我们平时使用的宽带不会分配唯一的公网IP，即：正常情况下在互联网上无法定位我们，要建立通讯需要采取一些特殊的方法。本篇博客采用ngrok实现穿透内网，使用shadowsocks搭建梯">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://blog.djinguo.com/images/ngrok.png">
+<meta property="og:image" content="http://blog.djinguo.com/images/ngrok_start.png">
+<meta property="og:updated_time" content="2019-01-16T13:28:33.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ngrok实现内网穿透并设置开机启动，可以通过ssh远程控制主机，校外也能看论文。">
+<meta name="twitter:description" content="在外的两大烦恼，一为无法免费下载论文，二为在国外受版权限制音乐都不能很愉快地欣赏，明明购买了音乐会员却一片灰色，即使使用阿里云服务器可以点亮却受限于少的可怜的1m带宽——连听首歌都会卡顿。但因为IPv4地址数量有限，我们平时使用的宽带不会分配唯一的公网IP，即：正常情况下在互联网上无法定位我们，要建立通讯需要采取一些特殊的方法。本篇博客采用ngrok实现穿透内网，使用shadowsocks搭建梯">
+<meta name="twitter:image" content="http://blog.djinguo.com/images/ngrok.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://blog.djinguo.com/2019-01-15/ngrokpenetrate/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>ngrok实现内网穿透并设置开机启动，可以通过ssh远程控制主机，校外也能看论文。 | Study and Share</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=true"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'true');
+</script>
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+  <!-- 页面点击小红心 -->
+  <script type="text/javascript" src="/js/src/love.js"></script>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <a href="https://github.com/femj007"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Study and Share</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">Jinguo's blog</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-关于">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />关于</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.djinguo.com/2019-01-15/ngrokpenetrate/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jinguo Dong (董金国)">
+      <meta itemprop="description" content="爱技术，爱折腾">
+      <meta itemprop="image" content="/images/me.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Study and Share">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">ngrok实现内网穿透并设置开机启动，可以通过ssh远程控制主机，校外也能看论文。
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-14 21:28:12" itemprop="dateCreated datePublished" datetime="2019-01-14T21:28:12+08:00">2019-01-14</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-16 21:28:33" itemprop="dateModified" datetime="2019-01-16T21:28:33+08:00">2019-01-16</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/" itemprop="url" rel="index"><span itemprop="name">web</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019-01-15/ngrokpenetrate/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019-01-15/ngrokpenetrate/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019-01-15/ngrokpenetrate/" class="leancloud_visitors" data-flag-title="ngrok实现内网穿透并设置开机启动，可以通过ssh远程控制主机，校外也能看论文。">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>在外的两大烦恼，一为无法免费下载论文，二为在国外受版权限制音乐都不能很愉快地欣赏，明明购买了音乐会员却一片灰色，即使使用阿里云服务器可以点亮却受限于少的可怜的1m带宽——连听首歌都会卡顿。<br>但因为IPv4地址数量有限，我们平时使用的宽带不会分配唯一的公网IP，即：正常情况下在互联网上无法定位我们，要建立通讯需要采取一些特殊的方法。<br>本篇博客采用ngrok实现穿透内网，使用shadowsocks搭建梯子建立连接。<br>注意：本博客仅供技术分享，请勿用此进行违法行为，一切后果概不负责！</p>
+</blockquote>
+<p><img src="/images/ngrok.png" alt="ngrok原理"><br><a id="more"></a></p>
+<h1 id="技术概括"><a href="#技术概括" class="headerlink" title="技术概括"></a>技术概括</h1><p>内网穿透，即在茫茫网络中发现你的机器，通过外网也能访问你的本地应用。</p>
+<p>内网主机可以是你的PC，也可以是实验室的服务器（请确保授权），甚至可以是你的树莓派等等等~</p>
+<p>解决方案有多个，包括花生壳、nat123、ngrok、frp等。这些有些是收费的（并且一味依赖他人服务可能稳定性、安全性略有缺失），有些实现起来颇有难度，本篇采用ngrok方案实现内网穿透，如果你手头有可支配的云主机、域名那就非常方便。如果没有，也可以考虑租用购买一个便宜的，有些域名（如.site）八元就可以买一年（但需要注意部分廉价域名可能无法备案，在国内不能正常使用，如.tech听说不行），阿里云的学生计划也可以很便宜地租到服务器（<a href="https://promotion.aliyun.com/ntms/act/xsgroup/buy.html?group=fi99mrShFx" target="_blank" rel="noopener">阿里云服务器学生计划</a>），由于不是本篇重点这里就不多谈了。</p>
+<p>总体来说，我们需要在云服务器部署ngrok的服务端，在内网主机部署ngrok的客户端，将域名DNS解析到云服务器（后面细讲），最后在外网通过云服务器端口映射访问内网主机。（参照最上方的图解）</p>
+<h1 id="安装配置ngrok服务器端"><a href="#安装配置ngrok服务器端" class="headerlink" title="安装配置ngrok服务器端"></a>安装配置ngrok服务器端</h1><p>这里我使用的是阿里云购买的域名，假设域名为<code>example.com</code></p>
+<p>我的云主机使用的是vultr旧金山节点的服务器（阿里云的也可以使用），下文将用<code>ip_vultr</code>代替我的服务器IP地址。</p>
+<p>内网主机安装的是<code>Ubuntu 16.04 server</code>版本。</p>
+<p>操作过程中如果遇到<code>permission denied</code>问题可以尝试在命令前加<code>sudo</code>（权限问题）</p>
+<h2 id="设置域名解析"><a href="#设置域名解析" class="headerlink" title="设置域名解析"></a>设置域名解析</h2><p>需要设置两个A记录DNS解析，分别是：</p>
+<ol>
+<li>将<code>ngrok.example.com</code>解析到<code>ip_vultr</code></li>
+<li>将<code>*.ngrok.example.com</code>解析到<code>ip_vultr</code>（泛域名解析）</li>
+</ol>
+<p>注意：实际操作中只要域名前面部分就行，即<code>ngrok</code>和<code>*.ngrok</code>，这个字符串可以修改，不过后面不能忘记。</p>
+<h2 id="安装依赖项"><a href="#安装依赖项" class="headerlink" title="安装依赖项"></a>安装依赖项</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install gcc golang</span><br></pre></td></tr></table></figure>
+<h2 id="下载代码"><a href="#下载代码" class="headerlink" title="下载代码"></a>下载代码</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/mamboer/ngrok.git</span><br></pre></td></tr></table></figure>
+<h2 id="生成ssl证书"><a href="#生成ssl证书" class="headerlink" title="生成ssl证书"></a>生成ssl证书</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cd ngrok</span><br><span class="line">domain="ngrok.example.com"</span><br><span class="line">openssl genrsa -out rootCA.key 2048</span><br><span class="line">openssl req -x509 -new -nodes -key rootCA.key -subj "/CN=$domain" -days 5000 -out rootCA.pem</span><br><span class="line">openssl genrsa -out device.key 2048</span><br><span class="line">openssl req -new -key device.key -subj "/CN=$domain" -out device.csr</span><br><span class="line">openssl x509 -req -in device.csr -CA rootCA.pem -CAkey rootCA.key -CAcreateserial -out device.crt -days 5000</span><br></pre></td></tr></table></figure>
+<h2 id="复制证书到配置的目录中"><a href="#复制证书到配置的目录中" class="headerlink" title="复制证书到配置的目录中"></a>复制证书到配置的目录中</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cp rootCA.pem assets/client/tls/ngrokroot.crt -f</span><br><span class="line">cp device.crt assets/server/tls/snakeoil.crt  -f</span><br><span class="line">cp device.key assets/server/tls/snakeoil.key -f</span><br></pre></td></tr></table></figure>
+<h2 id="编译ngrok服务器端"><a href="#编译ngrok服务器端" class="headerlink" title="编译ngrok服务器端"></a>编译ngrok服务器端</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make release-server</span><br></pre></td></tr></table></figure>
+<h2 id="编译ngrok客户端"><a href="#编译ngrok客户端" class="headerlink" title="编译ngrok客户端"></a>编译ngrok客户端</h2><p>注：编译之前请先对照列表确认自己内网主机的系统参数：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Linux 平台 32 位系统：GOOS=linux GOARCH=386</span><br><span class="line">Linux 平台 64 位系统：GOOS=linux GOARCH=amd64</span><br><span class="line"> </span><br><span class="line">Windows 平台 32 位系统：GOOS=windows GOARCH=386</span><br><span class="line">Windows 平台 64 位系统：GOOS=windows GOARCH=amd64</span><br><span class="line"> </span><br><span class="line">MAC 平台 32 位系统：GOOS=darwin GOARCH=386</span><br><span class="line">MAC 平台 64 位系统：GOOS=darwin GOARCH=amd64</span><br></pre></td></tr></table></figure>
+<p>我使用的是64位Ubuntu：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export GOOS="linux" GOARCH="amd64" &amp;&amp; make release-client</span><br></pre></td></tr></table></figure>
+<p>编译完成后请将生成的客户端下载下来（在<code>/ngrok/bin</code>文件夹中，Linux是ngrok文件，Windows是在这个目录子文件夹中的ngrok.exe文件）</p>
+<p>如果使用xshell连接云主机推荐使用<code>lrzsz</code>进行文件传输：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install lrzsz</span><br></pre></td></tr></table></figure>
+<p>rz是上传文件到云服务器，sz file是下载文件到本地。</p>
+<p>当然你也可以使用其他软件（如WinSCP）传输文件。</p>
+<h2 id="运行ngrok服务器端"><a href="#运行ngrok服务器端" class="headerlink" title="运行ngrok服务器端"></a>运行ngrok服务器端</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/ngrok/bin/ngrokd -domain="ngrok.example.com" -httpAddr=":6060" -httpsAddr=":6061" -tunnelAddr=":6062"</span><br></pre></td></tr></table></figure>
+<p>注：<code>ngrokd</code>是生成的服务器端程序，如果反应找不到那可能是目录定位问题，可以cd到安装目录打开。</p>
+<p><code>httpAddr</code>以及<code>httpsAddr</code>分别是反向代理<code>http</code>以及<code>https</code>站点的端口。</p>
+<p>而<code>tunnelAddr</code>是<code>ngrok</code>客户端连接服务端的端口。（我们这次的重点，后面客户端还需要用到）</p>
+<p>以上端口都可以更改，但请记住更改的端口号。</p>
+<p>至此，我们的云服务器端就已经配置完成，下面是内网主机客户端。</p>
+<h1 id="内网主机ngrok客户端配置"><a href="#内网主机ngrok客户端配置" class="headerlink" title="内网主机ngrok客户端配置"></a>内网主机ngrok客户端配置</h1><h2 id="编写配置文件"><a href="#编写配置文件" class="headerlink" title="编写配置文件"></a>编写配置文件</h2><p>将之前从云服务器生成的ngrok客户端传到内网主机上（假设放到<code>/home/ngrok</code>目录下），在该目录创建一个<code>ngrok.cfg</code>文件，写入以下内容：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">server_addr: "ngrok.example.com:6062"</span><br><span class="line">trust_host_root_certs: false</span><br><span class="line">tunnels:</span><br><span class="line">  ss:</span><br><span class="line">    remote_port: 38383</span><br><span class="line">    proto:</span><br><span class="line">      tcp: 4321</span><br><span class="line"></span><br><span class="line">  ssh:</span><br><span class="line">    remote_port: 12345</span><br><span class="line">    proto:</span><br><span class="line">      tcp: 22</span><br></pre></td></tr></table></figure>
+<p>其中，第一行是我们和云服务器（ngrok服务器端）连接的方式：域名 + ngrok连接端口（请注意区分本篇博客的几个端口）</p>
+<p>后面是我们的配置，</p>
+<p>ss是 shadowsocks 的配置，将服务器端<code>38383</code>端口转发到本地的<code>4321</code>端口，即如果我们通过 shadowsocks 连接云服务器的<code>38383</code>端口，那么便会通过ngrok映射到内网主机的<code>4321</code>端口。</p>
+<p>ssh是一个加密的网络传输壳协议，通过它我们可以远程连接控制主机。ssh的端口是<code>22</code>，这里将服务器端<code>12345</code>端口映射到客户端的<code>22</code></p>
+<p>这里其实还可以配置其他很多东西，比如HTTP（本地建站解决方案？）、xrdp（Linux图形界面）、mstsc（Windows远程桌面）等，有兴趣的可以自己研究一下~</p>
+<blockquote>
+<p>小tip： 该文件格式不能使用Tab，否则会报错：<br>YAML error: line 1: found character that cannot start any token<br>请将Tab换成空格</p>
+</blockquote>
+<h2 id="运行ngrok客户端"><a href="#运行ngrok客户端" class="headerlink" title="运行ngrok客户端"></a>运行ngrok客户端</h2><p>使用如下命令启动客户端（再次提醒注意定位ngrok文件位置）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ngrok -log=ngrok.log -config=ngrok.cfg start ssh ss</span><br></pre></td></tr></table></figure>
+<p>运行后应该显示正在连接（connecting），直到绿色的<code>online</code>便是连接成功~</p>
+<p>如果报错请先去掉最后的sh运行，或者先安装shadowsocks再运行。</p>
+<h1 id="安装使用shadowsocks（如果只需要内网穿透请忽略这一段）"><a href="#安装使用shadowsocks（如果只需要内网穿透请忽略这一段）" class="headerlink" title="安装使用shadowsocks（如果只需要内网穿透请忽略这一段）"></a>安装使用shadowsocks（如果只需要内网穿透请忽略这一段）</h1><p>为了防止大家概念混淆前面一直没有讲shadowsocks（对，我一开始看别人的教程就晕过qaq）</p>
+<p>除了上面说过的服务器端客户端，shadowsocks（也就是常被用来搭建VPN的工具）将再引入一组服务器端客户端。</p>
+<p>也就是说，安装shadowsocks，我们的内网主机（ngrok的客户端）将被作为shadowsocks的服务器端，在我们外网的机器上将安装shadowsocks的客户端，这样我们就可以通过shadowsocks将内网主机作为跳板访问内网资源了。</p>
+<p>由于shadowsocks经常被人们拿来做不法用途，这里就不细讲了，感兴趣的可以上网搜索相关教程。这里推荐一个一键脚本。</p>
+<p>服务器端可以使用下面的一键脚本安装：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/flyzy2005/ss-fly</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Centos执行这个： yum -y install git</span><br><span class="line">Ubuntu/Debian执行这个： apt-get update &amp;&amp; apt-get -y install git</span><br><span class="line"></span><br><span class="line">ss-fly/ss-fly.sh -i password 4321</span><br></pre></td></tr></table></figure>
+<p>这里password换成自己想要的shadowsocks的密码，<code>4321</code>是我们前面映射用到的端口号（需要一致）。</p>
+<p>最后在外网的机器上安装shadowsocks客户端连接即可。（可以通过 <a href="https://github.com/shadowsocks" target="_blank" rel="noopener">GitHub shadowsocks</a> 进行下载）</p>
+<p>连接时的配置如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">"server" : "ip_vultr",  // or: ngrok.example.com</span><br><span class="line">"server_port" : 38383,</span><br><span class="line">"password" : "password",</span><br></pre></td></tr></table></figure>
+<p>注意第一行可以是云服务器IP，也可以是自己解析过的域名。</p>
+<p>第二行需要是云服务器上的端口（映射到内网主机上，仔细想想）</p>
+<p>第三行就是刚才设置的shadowsocks密码啦~</p>
+<h1 id="设置内网主机ngrok开机自启"><a href="#设置内网主机ngrok开机自启" class="headerlink" title="设置内网主机ngrok开机自启"></a>设置内网主机ngrok开机自启</h1><h2 id="在-home-ngrok目录下新建脚本ngrok-sh，内容如下："><a href="#在-home-ngrok目录下新建脚本ngrok-sh，内容如下：" class="headerlink" title="在/home/ngrok目录下新建脚本ngrok.sh，内容如下："></a>在<code>/home/ngrok</code>目录下新建脚本<code>ngrok.sh</code>，内容如下：</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /home/ngrok #此处更改为你自己的ngrok客户端的文件路径</span><br><span class="line">./ngrok -config=./ngrok.cfg start ssh ss</span><br></pre></td></tr></table></figure>
+<h2 id="接着我们来把ngrok启动脚本制作成系统服务。在-etc-init-d目录下新建一个服务项目（其实就是新建一个名为“ngrok”的文件），代码如下："><a href="#接着我们来把ngrok启动脚本制作成系统服务。在-etc-init-d目录下新建一个服务项目（其实就是新建一个名为“ngrok”的文件），代码如下：" class="headerlink" title="接着我们来把ngrok启动脚本制作成系统服务。在 /etc/init.d目录下新建一个服务项目（其实就是新建一个名为“ngrok”的文件），代码如下："></a>接着我们来把ngrok启动脚本制作成系统服务。在 /etc/init.d目录下新建一个服务项目（其实就是新建一个名为“ngrok”的文件），代码如下：</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/sh</span><br><span class="line"><span class="meta">#</span>chkconfig:2345 70 30</span><br><span class="line"><span class="meta">#</span>description:ngrok</span><br><span class="line"></span><br><span class="line">ngrok_path=/home/ngrok #此处更改为你自己的启动脚本的文件路径</span><br><span class="line">case "$1" in</span><br><span class="line">    start)</span><br><span class="line">        echo "start ngrok service.."</span><br><span class="line">        sh $&#123;ngrok_path&#125;/ngrok.sh</span><br><span class="line">        ;;</span><br><span class="line">    *)</span><br><span class="line">    exit 1</span><br><span class="line">    ;;</span><br><span class="line">esac</span><br></pre></td></tr></table></figure>
+<h2 id="保存上一步的文件，并赋予至少755的权限，shell命令如下："><a href="#保存上一步的文件，并赋予至少755的权限，shell命令如下：" class="headerlink" title="保存上一步的文件，并赋予至少755的权限，shell命令如下："></a>保存上一步的文件，并赋予至少755的权限，shell命令如下：</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod 755 /etc/init.d/ngrok</span><br></pre></td></tr></table></figure>
+<h2 id="接下来我们要注册ngrok的自启动服务，shell命令如下："><a href="#接下来我们要注册ngrok的自启动服务，shell命令如下：" class="headerlink" title="接下来我们要注册ngrok的自启动服务，shell命令如下："></a>接下来我们要注册ngrok的自启动服务，shell命令如下：</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/init.d</span><br><span class="line">sudo update-rc.d ngrok defaults</span><br><span class="line">sudo update-rc.d start 70 2 3 4 5</span><br></pre></td></tr></table></figure>
+<p>注：如果提示找不到程序，请使用sudo apt-get install sysv-rc-conf自行安装，安装前建议先更新系统，sudo apt-get update。</p>
+<h2 id="测试服务是否能启动成功，shell命令如下："><a href="#测试服务是否能启动成功，shell命令如下：" class="headerlink" title="测试服务是否能启动成功，shell命令如下："></a>测试服务是否能启动成功，shell命令如下：</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service ngrok start</span><br></pre></td></tr></table></figure>
+<h2 id="检查自启动的服务，shell命令如下："><a href="#检查自启动的服务，shell命令如下：" class="headerlink" title="检查自启动的服务，shell命令如下："></a>检查自启动的服务，shell命令如下：</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo sysv-rc-conf</span><br></pre></td></tr></table></figure>
+<p><img src="/images/ngrok_start.png" alt="ngrok原理"></p>
+<p>如果叉叉和上图一致就没问题啦~</p>
+<p>至此，我们的任务全部完成了，可以重启内网主机看看哦~ </p>
+<p>感兴趣可以做一个小作业：如何通过ngrok内网穿透远程登录桌面？ 欢迎在评论区分享你的答案。</p>
+<p>有问题欢迎留言或者私信/邮件，谢谢支持！</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://xingtingyang.com/866.html" target="_blank" rel="noopener">使用ngrok+shadowsocks穿透内网校外也能畅快看论文</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/25167530" target="_blank" rel="noopener">Windows&amp;Linux下设置ngrok开机自启动</a></p>
+<p><a href="https://blog.csdn.net/zhangguo5/article/details/77848658" target="_blank" rel="noopener">一分钟实现内网穿透（ngrok服务器搭建）</a></p>
+
+      
+    </div>
+
+    
+      
+
+
+    
+
+    
+    
+    
+
+    <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
+  <p><span>文章作者:</span><a href="/" title="访问 Jinguo Dong (董金国) 的个人博客">Jinguo Dong (董金国)</a></p>
+  <p><span>最后更新:</span>2019年01月16日 21:01:33</p>
+  <p><span>原始链接:</span><a href="/2019-01-15/ngrokpenetrate/" title="ngrok实现内网穿透并设置开机启动，可以通过ssh远程控制主机，校外也能看论文。">http://blog.djinguo.com/2019-01-15/ngrokpenetrate/</a></p>
+  <p><span>版权声明:</span>本博客所有文章除特别声明外，均采用 <i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/3.0/" target="_blank" title="Attribution-NonCommercial-ShareAlike 3.0 Unported (CC BY-NC-SA 3.0)"> BY-NC-SA 3.0 许可协议</a>，转载请注明出处！</p>  
+</div>
+
+      
+    </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="Jinguo Dong (董金国) 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Jinguo Dong (董金国) 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ngrok/" rel="tag"># ngrok</a>
+          
+            <a href="/tags/shadowsocks/" rel="tag"># shadowsocks</a>
+          
+            <a href="/tags/内网穿透/" rel="tag"># 内网穿透</a>
+          
+            <a href="/tags/ssh/" rel="tag"># ssh</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+            
+               <div id="needsharebutton-postbottom">
+                 <span class="btn">
+                    <i class="fa fa-share-alt" aria-hidden="true"></i>
+                 </span>
+               </div>
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019-01-10/changehexo/" rel="next" title="Hexo + GitHub 博客更换域名及添加备案号小记">
+                <i class="fa fa-chevron-left"></i> Hexo + GitHub 博客更换域名及添加备案号小记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019-01-30/ubuntu-18-start/" rel="prev" title="Ubuntu Server 18.04.1 LTS 开机自动启动脚本 SVN Ngrok 自动启动 rc.local">
+                Ubuntu Server 18.04.1 LTS 开机自动启动脚本 SVN Ngrok 自动启动 rc.local <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTU0OS8xNjA3Ng=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/me.jpg"
+                alt="Jinguo Dong (董金国)" />
+            
+              <p class="site-author-name" itemprop="name">Jinguo Dong (董金国)</p>
+              <p class="site-description motion-element" itemprop="description">爱技术，爱折腾</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/femj007" target="_blank" title="GitHub" rel="external nofollow"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:dong.jinguo@outlook.com" target="_blank" title="E-Mail" rel="external nofollow"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.zhihu.com/people/dong-jin-guo-26/activities" target="_blank" title="Zhihu" rel="external nofollow"><i class="fa fa-fw fa-zhihu"></i>Zhihu</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://djinguo.com" target="_blank" title="WebSite" rel="external nofollow"><i class="fa fa-fw fa-internet-explorer"></i>WebSite</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.libenkang.xyz/" title="LiBenkang" target="_blank">LiBenkang</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#技术概括"><span class="nav-number">1.</span> <span class="nav-text">技术概括</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装配置ngrok服务器端"><span class="nav-number">2.</span> <span class="nav-text">安装配置ngrok服务器端</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#设置域名解析"><span class="nav-number">2.1.</span> <span class="nav-text">设置域名解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装依赖项"><span class="nav-number">2.2.</span> <span class="nav-text">安装依赖项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下载代码"><span class="nav-number">2.3.</span> <span class="nav-text">下载代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生成ssl证书"><span class="nav-number">2.4.</span> <span class="nav-text">生成ssl证书</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#复制证书到配置的目录中"><span class="nav-number">2.5.</span> <span class="nav-text">复制证书到配置的目录中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编译ngrok服务器端"><span class="nav-number">2.6.</span> <span class="nav-text">编译ngrok服务器端</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编译ngrok客户端"><span class="nav-number">2.7.</span> <span class="nav-text">编译ngrok客户端</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行ngrok服务器端"><span class="nav-number">2.8.</span> <span class="nav-text">运行ngrok服务器端</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#内网主机ngrok客户端配置"><span class="nav-number">3.</span> <span class="nav-text">内网主机ngrok客户端配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#编写配置文件"><span class="nav-number">3.1.</span> <span class="nav-text">编写配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行ngrok客户端"><span class="nav-number">3.2.</span> <span class="nav-text">运行ngrok客户端</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装使用shadowsocks（如果只需要内网穿透请忽略这一段）"><span class="nav-number">4.</span> <span class="nav-text">安装使用shadowsocks（如果只需要内网穿透请忽略这一段）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#设置内网主机ngrok开机自启"><span class="nav-number">5.</span> <span class="nav-text">设置内网主机ngrok开机自启</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#在-home-ngrok目录下新建脚本ngrok-sh，内容如下："><span class="nav-number">5.1.</span> <span class="nav-text">在/home/ngrok目录下新建脚本ngrok.sh，内容如下：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#接着我们来把ngrok启动脚本制作成系统服务。在-etc-init-d目录下新建一个服务项目（其实就是新建一个名为“ngrok”的文件），代码如下："><span class="nav-number">5.2.</span> <span class="nav-text">接着我们来把ngrok启动脚本制作成系统服务。在 /etc/init.d目录下新建一个服务项目（其实就是新建一个名为“ngrok”的文件），代码如下：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#保存上一步的文件，并赋予至少755的权限，shell命令如下："><span class="nav-number">5.3.</span> <span class="nav-text">保存上一步的文件，并赋予至少755的权限，shell命令如下：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#接下来我们要注册ngrok的自启动服务，shell命令如下："><span class="nav-number">5.4.</span> <span class="nav-text">接下来我们要注册ngrok的自启动服务，shell命令如下：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试服务是否能启动成功，shell命令如下："><span class="nav-number">5.5.</span> <span class="nav-text">测试服务是否能启动成功，shell命令如下：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#检查自启动的服务，shell命令如下："><span class="nav-number">5.6.</span> <span class="nav-text">检查自启动的服务，shell命令如下：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">6.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jinguo Dong (董金国)</span>
+
+  
+
+  
+</div>
+
+
+  
+
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" rel="external nofollow" href="https://theme-next.org">NexT.Mist</a> v6.4.1</div>
+
+-->
+
+
+
+<div>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <!--<span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>-->
+    
+    <span id="busuanzi_container_site_uv">您是本站第<span id="busuanzi_value_site_uv"></span>位访问者</span>
+    <span class="post-meta-divider"> | </span>
+    <span class="post-count">博客全站共10k字</span>
+    <span class="post-meta-divider"> | </span>
+    <a href="http://www.miitbeian.gov.cn/">苏ICP备19001979号</a> 
+</div>
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+
+
+  
+    <script type="text/javascript">
+      window.livereOptions = {
+        refer: '2019-01-15/ngrokpenetrate/'
+      };
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'cgjXga4ba0R0nbBW2MymUA4r-gzGzoHsz',
+        appKey: 'lYwVSJG7AtdkDtiFYf4syLtx',
+        placeholder: '来试试呀~',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: true
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+  
+<!-- needsharebutton Javascript file -->
+<script src="js/needsharebutton.min.js"></script>
+<!-- needsharebutton CSS file -->
+<link href="css/needsharebutton.min.css" rel="stylesheet" />
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>
